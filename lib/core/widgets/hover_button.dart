@@ -4,13 +4,13 @@ import 'package:flutter_riverpod/legacy.dart';
 
 class HoverButton extends ConsumerStatefulWidget {
   final String title;
-  final double fontSize;
+  final TextStyle style;
   final VoidCallback onTap;
 
   const HoverButton({
     super.key,
     required this.title,
-    required this.fontSize,
+    required this.style,
     required this.onTap,
   });
 
@@ -31,7 +31,7 @@ class _HoverButtonState extends ConsumerState<HoverButton> {
       onExit: (_) => ref.read(hoverProvider.notifier).update((state) => false),
       child: GestureDetector(
         onTap: () => widget.onTap,
-        child: Text(widget.title, style: TextStyle(fontSize: widget.fontSize, color: (isHovered ? Colors.cyan : Colors.black))),
+        child: Text(widget.title, style: widget.style.copyWith(color: (isHovered ? Colors.lightBlue : widget.style.color))),
       ),
     );
   }

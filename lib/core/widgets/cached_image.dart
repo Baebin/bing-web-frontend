@@ -20,14 +20,26 @@ class CachedImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget widget = CachedNetworkImage(
-      imageUrl: url,
-      width: width,
-      height: height,
-      fit: fit,
-      placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
-    );
+    Widget widget;
+    if (url.startsWith("assets/")) {
+      widget = Image.asset(
+        url,
+        width: width,
+        height: height,
+        fit: fit,
+      );
+    }
+    else {
+      widget = CachedNetworkImage(
+        imageUrl: url,
+        width: width,
+        height: height,
+        fit: fit,
+        placeholder: (context, url) =>
+        const Center(child: CircularProgressIndicator()),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      );
+    }
     if (isCircle) widget = ClipOval(child: widget);
     return widget;
   }
