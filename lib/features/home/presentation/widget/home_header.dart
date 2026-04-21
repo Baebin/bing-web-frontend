@@ -26,7 +26,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                     padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
                     child: Row(
                       children: [
-                        const CachedImage(url: AppImages.logo, width: 60, height: 60, isCircle: true),
+                        CachedImage(url: AppImages.logo.path, width: 60, height: 60, isCircle: true),
 
                         SizedBox(width: 30),
                         const Text("빙구의 빈 공간", style: AppTextStyles.headerLogo),
@@ -74,5 +74,5 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(250);
+  Size get preferredSize => const Size.fromHeight(200);
 }

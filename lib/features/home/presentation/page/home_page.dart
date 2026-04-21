@@ -1,4 +1,4 @@
-import 'package:bing_web_frontend/features/home/presentation/widget/wave_section.dart';
+import 'package:bing_web_frontend/features/home/presentation/widget/home_animation_section.dart';
 import 'package:bing_web_frontend/features/home/presentation/widget/home_header.dart';
 import 'package:flutter/material.dart';
 
@@ -9,13 +9,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const HomeHeader(),
-      body: Center(
-        child: Column(
-          children: [
-            const WaveSection(),
-          ],
-        )
-      ),
+      body: const Column(
+        children: [
+          Expanded(
+            child: HomeAnimationSection(),
+          ),
+        ],
+      )
     );
   }
 }
