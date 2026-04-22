@@ -6,6 +6,11 @@ class AppColors {
   static const primaryDark = Color(0xFF4E7FAF);
   static const primaryLight = Color(0xFFAFCBEA);
 
+  static const pastelBlue = Color(0xFFB3E5FC);
+  static const pastelBlueLight = Color(0xFFE1F5FE);
+  static const pastelBlueSoft = Color(0xFF90CAF9);
+  static const pastelBlueMisty = Color(0xFFB2EBF2);
+
   // Background
   static const background = Color(0xFFF4F8FC);
 
