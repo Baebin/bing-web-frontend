@@ -4,8 +4,14 @@ import 'package:bing_web_frontend/core/constants/app_images.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 
+
 class HomeAnimationWidget extends StatefulWidget {
-  const HomeAnimationWidget({super.key});
+  final bool hasText;
+
+  const HomeAnimationWidget({
+    super.key,
+    required this.hasText
+  });
 
   @override
   State<HomeAnimationWidget> createState() => _HomeAnimationWidgetState();
@@ -187,7 +193,8 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                       child: CachedImage(url: AppImages.flowers.path)
                   ),
 
-                  child!,
+                  if (widget.hasText)
+                    child!,
                 ],
               );
             },

@@ -19,19 +19,28 @@ class HoverButton extends ConsumerStatefulWidget {
 }
 
 class _HoverButtonState extends ConsumerState<HoverButton> {
-  bool isHovered = true;
-
   final hoverProvider = StateProvider<bool>((ref) => false);
 
   @override
   Widget build(BuildContext context) {
-    bool isHovered = ref.watch(hoverProvider);
+   final bool isHovered = ref.watch(hoverProvider);
     return MouseRegion(
+      cursor: SystemMouseCursors.click,
       onEnter: (_) => ref.read(hoverProvider.notifier).update((state) => true),
       onExit: (_) => ref.read(hoverProvider.notifier).update((state) => false),
       child: GestureDetector(
-        onTap: () => widget.onTap,
-        child: Text(widget.title, style: widget.style.copyWith(color: (isHovered ? Colors.lightBlue : widget.style.color))),
+        onTap: widget.onTap,
+        child: AnimatedDefaultTextStyle(
+          duration: const Duration(milliseconds: 200),
+          curve: Curves.easeInOut,
+          style: widget.style.copyWith(
+            color: isHovered ? Colors.lightBlue : widget.style.color,
+            shadows: isHovered
+                ? [Shadow(color: Colors.lightBlue.withValues(alpha: 0.3), blurRadius: 8)]
+                : [],
+          ),
+          child: Text(widget.title),
+        ),
       ),
     );
   }

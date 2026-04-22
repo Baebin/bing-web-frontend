@@ -12,7 +12,7 @@ class HomePage extends StatelessWidget {
       body: const Column(
         children: [
           Expanded(
-            child: HomeAnimationSection(),
+            child: HomeAnimationSection(hasText: true),
           ),
         ],
       )
