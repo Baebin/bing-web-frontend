@@ -1,6 +1,7 @@
 import 'package:bing_web_frontend/core/constants/app_colors.dart';
 import 'package:bing_web_frontend/core/constants/app_images.dart';
 import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
+import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/features/auth/presentation/widget/login_text_field.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +13,12 @@ class SignUpWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 600;
 
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
         child: Container(
-          width: isMobile ? size.width * 0.9 : 450,
+          width: size.isMobile ? size.width * 0.9 : 450,
           padding: const EdgeInsets.all(40),
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.9),
@@ -40,15 +40,15 @@ class SignUpWidget extends StatelessWidget {
             children: [
               CachedImage(
                 url: AppImages.logo.path,
-                width: isMobile ? 100 : 130,
+                width: size.isMobile ? 100 : 130,
                 isCircle: true,
                 hasSolidBorder: true,
                 borderColor: AppColors.primary,
-                borderWidth: isMobile ? 2.5 : 3.5,
+                borderWidth: size.isMobile ? 2.5 : 3.5,
               ),
               const SizedBox(height: 24),
 
-              Text("빙구단 신청서", style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo),
+              Text("빙구단 신청서", style: size.isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo),
               const SizedBox(height: 30),
 
               const LoginTextField(
@@ -77,7 +77,7 @@ class SignUpWidget extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              _buildSignUpButton(isMobile),
+              _buildSignUpButton(size),
               const SizedBox(height: 20),
 
               Wrap(
@@ -99,7 +99,7 @@ class SignUpWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildSignUpButton(bool isMobile) {
+  Widget _buildSignUpButton(Size size) {
     return SizedBox(
       width: double.infinity,
       height: 55,
@@ -113,7 +113,7 @@ class SignUpWidget extends StatelessWidget {
           ),
           elevation: 0,
         ),
-        child: Text("회원가입", style: isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
+        child: Text("회원가입", style: size.isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
       ),
     );
   }

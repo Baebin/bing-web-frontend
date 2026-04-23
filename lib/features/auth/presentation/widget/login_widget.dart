@@ -2,6 +2,7 @@ import 'package:bing_web_frontend/core/constants/app_colors.dart';
 import 'package:bing_web_frontend/core/constants/app_images.dart';
 import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
 import 'package:bing_web_frontend/core/router/app_route.dart';
+import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
 import 'package:bing_web_frontend/features/auth/presentation/widget/login_text_field.dart';
@@ -14,13 +15,12 @@ class LoginWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final isMobile = size.width < 600;
 
     return Center(
       child: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
         child: Container(
-          width: isMobile ? size.width * 0.9 : 400,
+          width: size.isMobile ? size.width * 0.9 : 400,
           padding: const EdgeInsets.all(40),
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.9),
@@ -42,11 +42,11 @@ class LoginWidget extends StatelessWidget {
             children: [
               CachedImage(
                 url: AppImages.logo.path,
-                width: isMobile ? 120 : 150,
+                width: size.isMobile ? 120 : 150,
                 isCircle: true,
                 hasSolidBorder: true,
                 borderColor: AppColors.primary,
-                borderWidth: isMobile ? 3.0 : 4.0,
+                borderWidth: size.isMobile ? 3.0 : 4.0,
               ),
               const SizedBox(height: 20),
 
@@ -60,7 +60,7 @@ class LoginWidget extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              _buildLoginButton(isMobile),
+              _buildLoginButton(size),
               const SizedBox(height: 16),
 
               _buildFindAccountRow(),
@@ -82,7 +82,7 @@ class LoginWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginButton(bool isMobile) {
+  Widget _buildLoginButton(final Size size) {
     return SizedBox(
       width: double.infinity,
       height: 55,
@@ -94,7 +94,7 @@ class LoginWidget extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           elevation: 0,
         ),
-        child: Text("로그인", style: isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
+        child: Text("로그인", style: size.isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
       ),
     );
   }
