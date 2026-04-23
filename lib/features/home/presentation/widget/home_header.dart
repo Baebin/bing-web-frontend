@@ -19,6 +19,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
           final isMobile = constraints.isMobile;
 
           return Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 width: double.infinity,
@@ -32,26 +33,33 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                           horizontal: isMobile ? 15 : 30
                       ),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          CachedImage(
-                            url: AppImages.logo.path,
-                            width: isMobile ? 40 : 65,
-                            height: isMobile ? 40 : 65,
-                            isCircle: true,
-                            hasSolidBorder: true,
-                            borderWidth: isMobile ? 2.0 : 3.0,
-                            borderColor: AppColors.primary,
-                            onTap: () => context.pushSafe(AppRoute.home),
-                          ),
-                          const SizedBox(width: 20),
-                          Expanded(
-                            child: HoverButton(
-                                title: "빙구의 빈 공간",
-                                style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo,
-                                onTap: () => context.pushSafe(AppRoute.home)
+                          Flexible(
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                CachedImage(
+                                  url: AppImages.logo.path,
+                                  width: isMobile ? 40 : 65,
+                                  height: isMobile ? 40 : 65,
+                                  isCircle: true,
+                                  hasSolidBorder: true,
+                                  borderWidth: isMobile ? 2.0 : 3.0,
+                                  borderColor: AppColors.primary,
+                                  onTap: () => context.pushSafe(AppRoute.home),
+                                ),
+                                const SizedBox(width: 20),
+                                Expanded(
+                                  child: HoverButton(
+                                      title: "빙구의 빈 공간",
+                                      style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo,
+                                      onTap: () => context.pushSafe(AppRoute.home)
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          const Spacer(),
                           HoverButton(
                               title: "Login",
                               style: isMobile ? AppTextStyles.headerMenuSmall : AppTextStyles.headerMenu,
@@ -106,5 +114,5 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(142);
+  Size get preferredSize => const Size.fromHeight(160);
 }
