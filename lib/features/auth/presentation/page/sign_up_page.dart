@@ -1,10 +1,10 @@
-import 'package:bing_web_frontend/features/auth/presentation/widget/login_widget.dart';
+import 'package:bing_web_frontend/features/auth/presentation/widget/sign_up_widget.dart';
 import 'package:bing_web_frontend/features/home/presentation/widget/home_animation_section.dart';
 import 'package:bing_web_frontend/features/home/presentation/widget/home_header.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignupPage extends StatelessWidget {
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
             Positioned.fill(
               child: HomeAnimationSection(),
             ),
-            LoginWidget(),
+            SignUpWidget(),
           ],
         )
     );

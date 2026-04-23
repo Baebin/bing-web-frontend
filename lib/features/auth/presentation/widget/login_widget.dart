@@ -1,10 +1,12 @@
 import 'package:bing_web_frontend/core/constants/app_colors.dart';
 import 'package:bing_web_frontend/core/constants/app_images.dart';
 import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
+import 'package:bing_web_frontend/core/router/app_route.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
 import 'package:bing_web_frontend/features/auth/presentation/widget/login_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginWidget extends StatelessWidget {
   const LoginWidget({super.key});
@@ -58,38 +60,75 @@ class LoginWidget extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              SizedBox(
-                width: double.infinity,
-                height: 55,
-                child: ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.pastelBlueSoft,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    elevation: 0,
-                  ),
-                  child: Text("로그인", style: isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
-                ),
-              ),
-
+              _buildLoginButton(isMobile),
               const SizedBox(height: 16),
-              Wrap(
-                runSpacing: 10,
-                alignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  TextButton(onPressed: () {}, child: const Text("아이디 찾기")),
-                  LineDivider(isVertical: true, width: 1.0, height: 12.0, color: Colors.grey),
-                  TextButton(onPressed: () {}, child: const Text("비밀번호 찾기")),
-                ],
-              )
+
+              _buildFindAccountRow(),
+              const SizedBox(height: 20),
+
+              LineDivider(
+                  isVertical: false,
+                  width: double.infinity,
+                  height: 1.5,
+                  color: Colors.grey.withValues(alpha: 0.4)
+              ),
+              const SizedBox(height: 20),
+
+              _buildSignUpRedirect(context),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildLoginButton(bool isMobile) {
+    return SizedBox(
+      width: double.infinity,
+      height: 55,
+      child: ElevatedButton(
+        onPressed: () {},
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.pastelBlueSoft,
+          foregroundColor: Colors.white,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          elevation: 0,
+        ),
+        child: Text("로그인", style: isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
+      ),
+    );
+  }
+
+  Widget _buildFindAccountRow() {
+    return Wrap(
+      runSpacing: 10,
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        TextButton(onPressed: () {}, child: const Text("아이디 찾기")),
+        LineDivider(isVertical: true, width: 1.0, height: 12.0, color: Colors.grey),
+        TextButton(onPressed: () {}, child: const Text("비밀번호 찾기")),
+      ],
+    );
+  }
+
+  Widget _buildSignUpRedirect(BuildContext context) {
+    return Wrap(
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      children: [
+        const Text("아직 계정이 없으신가요?", style: TextStyle(color: Colors.grey)),
+        TextButton(
+          onPressed: () => context.push(AppRoute.signUp),
+          child: const Text(
+            "회원가입",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: AppColors.primary,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
