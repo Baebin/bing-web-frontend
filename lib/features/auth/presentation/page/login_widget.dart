@@ -1,6 +1,7 @@
 import 'package:bing_web_frontend/core/constants/app_colors.dart';
 import 'package:bing_web_frontend/core/constants/app_images.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
+import 'package:bing_web_frontend/core/widgets/line_divider.dart';
 import 'package:bing_web_frontend/features/auth/presentation/widget/login_text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -9,10 +10,14 @@ class LoginWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isMobile = size.width < 600;
+
     return Center(
       child: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
         child: Container(
-          width: 400,
+          width: isMobile ? size.width * 0.9 : 400,
           padding: const EdgeInsets.all(40),
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.9),
@@ -34,11 +39,11 @@ class LoginWidget extends StatelessWidget {
             children: [
               CachedImage(
                 url: AppImages.logo.path,
-                width: 150,
+                width: isMobile ? 120 : 150,
                 isCircle: true,
                 hasSolidBorder: true,
                 borderColor: AppColors.primary,
-                borderWidth: 4.0,
+                borderWidth: isMobile ? 3.0 : 4.0,
               ),
               const SizedBox(height: 20),
 
@@ -52,7 +57,6 @@ class LoginWidget extends StatelessWidget {
               ),
               const SizedBox(height: 30),
 
-              // 로그인 버튼
               SizedBox(
                 width: double.infinity,
                 height: 55,
@@ -75,7 +79,7 @@ class LoginWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextButton(onPressed: () {}, child: const Text("아이디 찾기")),
-                  const Text("|", style: TextStyle(color: Colors.grey)),
+                  LineDivider(isVertical: true, width: 1.0, height: 12.0, color: Colors.grey),
                   TextButton(onPressed: () {}, child: const Text("비밀번호 찾기")),
                 ],
               )

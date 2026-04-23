@@ -16,87 +16,91 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
     return LayoutBuilder(
         builder: (context, constraints) {
           final width = constraints.maxWidth;
-          final height = constraints.maxHeight;
-
           final isMobile = width < 600;
-          final isDesktop = width > 1024;
-          final isTablet = !isMobile && !isDesktop;
 
-          return Container(
-            height: preferredSize.height,
-            alignment: Alignment.center,
-            child: Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  color: AppColors.primary.withValues(alpha: 0.3),
-                  child: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1200),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                        child: Row(
-                          children: [
-                            CachedImage(
-                                url: AppImages.logo.path,
-                                width: isMobile ? 40 : 60,
-                                height: isMobile ? 40 : 60,
-                                isCircle: true
-                            ),
-
-                            SizedBox(width: 30),
-                            const Text("빙구의 빈 공간", style: AppTextStyles.headerLogo),
-
-                            const Spacer(),
-
-                            SizedBox(width: 50),
-                            HoverButton(
-                                title: "Login",
-                                style: AppTextStyles.headerMenu,
-                                onTap: () => context.push(AppRoute.login)),
-                          ],
-                        ),
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: double.infinity,
+                color: AppColors.primary.withValues(alpha: 0.3),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 1200),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: isMobile ? 10 : 15,
+                          horizontal: isMobile ? 15 : 30
+                      ),
+                      child: Row(
+                        children: [
+                          CachedImage(
+                            url: AppImages.logo.path,
+                            width: isMobile ? 40 : 65,
+                            height: isMobile ? 40 : 65,
+                            isCircle: true,
+                            hasSolidBorder: true,
+                            borderColor: AppColors.primary,
+                            borderWidth: isMobile ? 2.0 : 3.0,
+                          ),
+                          const SizedBox(width: 20),
+                          Flexible(
+                            child: Text("빙구의 빈 공간", style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo),
+                          ),
+                          const Spacer(),
+                          HoverButton(
+                              title: "Login",
+                              style: AppTextStyles.headerMenu,
+                              onTap: () => context.push(AppRoute.login)),
+                        ],
                       ),
                     ),
                   ),
                 ),
-                LineDivider(isVertical: false, width: double.infinity, height: 0, color: AppColors.primaryLight),
-                SizedBox(height: 20),
-                _buildMenuSection(isMobile),
-                SizedBox(height: 20),
-
-                LineDivider(isVertical: false, width: double.infinity, height: 0.0, color: AppColors.primaryLight),
-              ],
-            ),
+              ),
+              const LineDivider(isVertical: false, width: double.infinity, height: 0, color: AppColors.primaryLight),
+              Container(
+                width: double.infinity,
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                  child: Center(child: _buildMenuSection(isMobile),),
+                ),
+              ),
+              const LineDivider(isVertical: false, width: double.infinity, height: 0.0, color: AppColors.primaryLight),
+            ],
           );
         }
     );
   }
 
   Widget _buildMenuSection(bool isMobile) {
-    double spacing = isMobile ? 15.0 : 30.0;
-    return Row(
+    final double spacing = isMobile ? 15.0 : 30.0;
+    final style = isMobile ? AppTextStyles.headerMenuSmall : AppTextStyles.headerMenu;
+    return Wrap(
       spacing: spacing,
-      mainAxisSize: MainAxisSize.min,
+      runSpacing: 10,
+      alignment: WrapAlignment.center,
+      crossAxisAlignment: WrapCrossAlignment.center,
       children: [
-        HoverButton(
-            title: "Portfolio",
-            style: AppTextStyles.headerMenu,
-            onTap: () {}),
-        LineDivider(isVertical: true, width: 1.0, height: 15.0, color: AppColors.primary),
-        HoverButton(
-            title: "Blog",
-            style: AppTextStyles.headerMenu,
-            onTap: () {}),
-        LineDivider(isVertical: true, width: 1.0, height: 15.0, color: AppColors.primary),
-        HoverButton(
-            title: "Community",
-            style: AppTextStyles.headerMenu,
-            onTap: () {}),
+        HoverButton(title: "Portfolio", style: style, onTap: () {}),
+        _buildDivider(isMobile),
+        HoverButton(title: "Blog", style: style, onTap: () {}),
+        _buildDivider(isMobile),
+        HoverButton(title: "Community", style: style, onTap: () {}),
       ],
     );
   }
 
+  Widget _buildDivider(bool isMobile) {
+    return LineDivider(
+      isVertical: true,
+      width: 1.0,
+      height: isMobile ? 12.0 : 15.0,
+      color: AppColors.primary,
+    );
+  }
+
   @override
-  Size get preferredSize => const Size.fromHeight(200);
+  Size get preferredSize => const Size.fromHeight(150);
 }
