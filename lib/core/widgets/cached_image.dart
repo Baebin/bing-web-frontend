@@ -96,7 +96,7 @@ class CachedImage extends StatelessWidget {
     }
     if (onTap != null) {
       return GestureDetector(
-        onTap: () => onTap,
+        onTap: onTap,
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: widget,
