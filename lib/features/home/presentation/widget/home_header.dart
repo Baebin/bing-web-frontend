@@ -50,7 +50,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                                   onTap: () => context.pushSafe(AppRoute.home),
                                 ),
                                 const SizedBox(width: 20),
-                                Expanded(
+                                Flexible(
                                   child: HoverButton(
                                       title: "빙구의 빈 공간",
                                       style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo,
