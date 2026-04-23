@@ -1,5 +1,6 @@
 import 'package:bing_web_frontend/core/constants/app_colors.dart';
 import 'package:bing_web_frontend/core/constants/app_images.dart';
+import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
 import 'package:bing_web_frontend/features/auth/presentation/widget/login_text_field.dart';
@@ -70,13 +71,15 @@ class LoginWidget extends StatelessWidget {
                     ),
                     elevation: 0,
                   ),
-                  child: const Text("로그인", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  child: Text("로그인", style: isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
                 ),
               ),
 
               const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                runSpacing: 10,
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   TextButton(onPressed: () {}, child: const Text("아이디 찾기")),
                   LineDivider(isVertical: true, width: 1.0, height: 12.0, color: Colors.grey),

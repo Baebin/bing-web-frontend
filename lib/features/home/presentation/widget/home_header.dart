@@ -2,6 +2,7 @@ import 'package:bing_web_frontend/core/constants/app_colors.dart';
 import 'package:bing_web_frontend/core/constants/app_images.dart';
 import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
 import 'package:bing_web_frontend/core/router/app_route.dart';
+import 'package:bing_web_frontend/core/utils/extensions/box_constraints_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/hover_button.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
@@ -15,11 +16,9 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (context, constraints) {
-          final width = constraints.maxWidth;
-          final isMobile = width < 600;
+          final isMobile = constraints.isMobile;
 
           return Column(
-            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 width: double.infinity,
@@ -44,13 +43,13 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                             borderWidth: isMobile ? 2.0 : 3.0,
                           ),
                           const SizedBox(width: 20),
-                          Flexible(
+                          Expanded(
                             child: Text("빙구의 빈 공간", style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo),
                           ),
                           const Spacer(),
                           HoverButton(
                               title: "Login",
-                              style: AppTextStyles.headerMenu,
+                              style: isMobile ? AppTextStyles.headerMenuSmall : AppTextStyles.headerMenu,
                               onTap: () => context.push(AppRoute.login)),
                         ],
                       ),
@@ -102,5 +101,5 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(150);
+  Size get preferredSize => const Size.fromHeight(142);
 }

@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:bing_web_frontend/core/constants/app_colors.dart';
 import 'package:bing_web_frontend/core/constants/app_images.dart';
+import 'package:bing_web_frontend/core/utils/extensions/box_constraints_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
 
@@ -47,9 +48,9 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
         final width = constraints.maxWidth;
         final height = constraints.maxHeight;
 
-        final isMobile = width < 600;
-        final isDesktop = width > 1024;
-        final isTablet = !isMobile && !isDesktop;
+        final isMobile = constraints.isMobile;
+        final isDesktop = constraints.isDesktop;
+        final isTablet = constraints.isTablet;
 
         return RepaintBoundary(
           child: AnimatedBuilder(

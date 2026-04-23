@@ -24,4 +24,17 @@ class AppTextStyles {
     fontWeight: FontWeight.bold,
     letterSpacing: -0.3,
   );
+
+  // Button Styles
+  static const buttonLabel = TextStyle(
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 0.5,
+  );
+  static const buttonLabelSmall = TextStyle(
+    color: Colors.white,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
 }
