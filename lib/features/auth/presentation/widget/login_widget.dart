@@ -2,6 +2,7 @@ import 'package:bing_web_frontend/core/constants/app_colors.dart';
 import 'package:bing_web_frontend/core/constants/app_images.dart';
 import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
 import 'package:bing_web_frontend/core/router/app_route.dart';
+import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
@@ -119,7 +120,7 @@ class LoginWidget extends StatelessWidget {
       children: [
         const Text("아직 계정이 없으신가요?", style: TextStyle(color: Colors.grey)),
         TextButton(
-          onPressed: () => context.push(AppRoute.signUp),
+          onPressed: () => context.pushSafe(AppRoute.signUp),
           child: const Text(
             "회원가입",
             style: TextStyle(

@@ -3,6 +3,7 @@ import 'package:bing_web_frontend/core/constants/app_images.dart';
 import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
 import 'package:bing_web_frontend/core/router/app_route.dart';
 import 'package:bing_web_frontend/core/utils/extensions/box_constraints_extension.dart';
+import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/hover_button.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
@@ -50,7 +51,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                           HoverButton(
                               title: "Login",
                               style: isMobile ? AppTextStyles.headerMenuSmall : AppTextStyles.headerMenu,
-                              onTap: () => context.push(AppRoute.login)),
+                              onTap: () => context.pushSafe(AppRoute.login)),
                         ],
                       ),
                     ),
