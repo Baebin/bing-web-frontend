@@ -8,7 +8,6 @@ import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/hover_button.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
   const HomeHeader({super.key});
@@ -40,12 +39,17 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                             height: isMobile ? 40 : 65,
                             isCircle: true,
                             hasSolidBorder: true,
-                            borderColor: AppColors.primary,
                             borderWidth: isMobile ? 2.0 : 3.0,
+                            borderColor: AppColors.primary,
+                            onTap: () => context.pushSafe(AppRoute.home),
                           ),
                           const SizedBox(width: 20),
                           Expanded(
-                            child: Text("빙구의 빈 공간", style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo),
+                            child: HoverButton(
+                                title: "빙구의 빈 공간",
+                                style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo,
+                                onTap: () => context.pushSafe(AppRoute.home)
+                            ),
                           ),
                           const Spacer(),
                           HoverButton(

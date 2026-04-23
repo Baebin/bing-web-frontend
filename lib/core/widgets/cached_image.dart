@@ -19,8 +19,11 @@ class CachedImage extends StatelessWidget {
   final List<double> dashPattern;
 
   // Border Options
-  final double borderWidth;
   final Color borderColor;
+  final double borderWidth;
+
+  // Click Event
+  final VoidCallback? onTap;
 
   const CachedImage({
     super.key,
@@ -37,8 +40,10 @@ class CachedImage extends StatelessWidget {
     this.hasDottedBorder = false,
     this.dashPattern = const [6, 3],
 
-    this.borderColor = Colors.black,
     this.borderWidth = 2.0,
+    this.borderColor = Colors.black,
+
+    this.onTap,
   });
 
   @override
@@ -65,7 +70,7 @@ class CachedImage extends StatelessWidget {
     }
     if (isCircle) widget = ClipOval(child: widget);
     if (hasSolidBorder) {
-      return Container(
+      widget = Container(
         width: width,
         height: height,
         decoration: BoxDecoration(
@@ -78,9 +83,8 @@ class CachedImage extends StatelessWidget {
           child: widget,
         ),
       );
-    }
-    if (hasDottedBorder) {
-      return DottedBorder(
+    } else if (hasDottedBorder) {
+      widget = DottedBorder(
         options: CircularDottedBorderOptions(
           color: borderColor,
           strokeWidth: borderWidth,
@@ -88,6 +92,15 @@ class CachedImage extends StatelessWidget {
           padding: const EdgeInsets.all(4),
         ),
         child: widget,
+      );
+    }
+    if (onTap != null) {
+      return GestureDetector(
+        onTap: () => onTap,
+        child: MouseRegion(
+          cursor: SystemMouseCursors.click,
+          child: widget,
+        ),
       );
     }
     return widget;
