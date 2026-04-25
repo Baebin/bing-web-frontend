@@ -49,7 +49,7 @@ class AppDialog extends StatelessWidget {
   }
 
   Widget _buildDialog(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.symmetric(horizontal: 20),
