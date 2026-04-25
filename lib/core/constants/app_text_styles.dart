@@ -37,4 +37,50 @@ class AppTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.bold,
   );
+
+  // Dialog Styles
+  static const dialogTitle = TextStyle(
+    color: AppColors.primaryDark,
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.5,
+  );
+  static const dialogTitleSmall = TextStyle(
+    color: AppColors.primaryDark,
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.4,
+  );
+  static const dialogBody = TextStyle(
+    color: AppColors.textSecondary,
+    fontSize: 15,
+    fontWeight: FontWeight.normal,
+    height: 1.5,
+  );
+  static const dialogBodySmall = TextStyle(
+    color: AppColors.textSecondary,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    height: 1.4,
+  );
+  static const dialogButton = TextStyle(
+    color: Colors.white,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+  static const dialogButtonSmall = TextStyle(
+    color: Colors.white,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
+  static const dialogButtonSecondary = TextStyle(
+    color: Colors.grey,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+  static const dialogButtonSecondarySmall = TextStyle(
+    color: Colors.grey,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
 }
