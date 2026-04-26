@@ -55,7 +55,7 @@ class ApiErrorResponse {
 
   // Server
   static ApiErrorResponse unexpected(Response response) => ApiErrorResponse(
-    code: response.statusCode ?? "UNEXPECTED_STATUS",
+    code: "UNEXPECTED_${response.statusMessage ?? response.statusCode ?? 'UNKNOWN'}",
     message: "서버로부터 예상치 못한 응답을 받았습니다.",
     status: response.statusCode ?? HttpStatus.internalServerError,
   );
