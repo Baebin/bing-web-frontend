@@ -45,4 +45,4 @@ app.*.map.json
 /android/app/release
 
 # Config
-.env
+/assets/config/bing.env
