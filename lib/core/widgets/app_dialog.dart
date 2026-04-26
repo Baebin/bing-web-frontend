@@ -50,6 +50,7 @@ class AppDialog extends StatelessWidget {
 
   Widget _buildDialog(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    final contentStyle = size.isMobile ? AppTextStyles.dialogBodySmall : AppTextStyles.dialogBody;
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.symmetric(horizontal: 20),
@@ -66,10 +67,12 @@ class AppDialog extends StatelessWidget {
           children: [
             Text(title, style: size.isMobile ? AppTextStyles.dialogTitleSmall : AppTextStyles.dialogTitle),
             const SizedBox(height: 15),
-            Text(
-                content,
-                textAlign: TextAlign.center,
-                style: size.isMobile ? AppTextStyles.dialogBodySmall : AppTextStyles.dialogBody
+            RichText(
+              textAlign: TextAlign.center,
+              text: TextSpan(
+                style: contentStyle,
+                children: _parseContent(content, contentStyle),
+              ),
             ),
             const SizedBox(height: 25),
             Row(
@@ -110,5 +113,29 @@ class AppDialog extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<InlineSpan> _parseContent(String text, TextStyle style) {
+    final List<InlineSpan> spans = [];
+    final RegExp regExp = RegExp(r'\*\*(.*?)\*\*');
+
+    int lastIndex = 0;
+    for (final Match match in regExp.allMatches(text)) {
+      // 패턴 이전의 일반 텍스트
+      if (match.start > lastIndex) {
+        spans.add(TextSpan(text: text.substring(lastIndex, match.start)));
+      }
+      // ** 사이의 강조 텍스트
+      spans.add(TextSpan(
+        text: match.group(1),
+        style: style.copyWith(fontWeight: FontWeight.bold, color: AppColors.primary),
+      ));
+      lastIndex = match.end;
+    }
+    // 남은 일반 텍스트
+    if (lastIndex < text.length) {
+      spans.add(TextSpan(text: text.substring(lastIndex), style: style));
+    }
+    return spans;
   }
 }

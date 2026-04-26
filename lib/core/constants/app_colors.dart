@@ -14,6 +14,16 @@ class AppColors {
   // Background
   static const background = Color(0xFFF4F8FC);
 
+  // Point & Status Colors
+  static const error = Color(0xFFF08080);
+  static const errorLight = Color(0xFFF4A3A3);
+  static const success = Color(0xFF81C784);
+  static const warning = Color(0xFFFFD54F);
+
+  // Overlay & Transparency
+  static const whiteOverlay = Color(0xE6FFFFFF);
+  static const primaryShadow = Color(0x1A6FA8DC);
+
   // Text
   static const textPrimary = Color(0xFF2F3E4E);
   static const textSecondary = Color(0xFF6B7C93);
