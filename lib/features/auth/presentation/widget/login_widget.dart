@@ -1,21 +1,23 @@
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
-import 'package:bing_web_frontend/core/constants/app_images.dart';
-import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
-import 'package:bing_web_frontend/core/router/app_route.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_images.dart';
+import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
+import 'package:bing_web_frontend/core/router/bing_route.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
-import 'package:bing_web_frontend/features/auth/presentation/widget/login_text_field.dart';
+import 'package:bing_web_frontend/features/auth/presentation/widget/auth_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class LoginWidget extends StatelessWidget {
   const LoginWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
+
+    final idController = TextEditingController();
+    final passwordController = TextEditingController();
 
     return Center(
       child: SingleChildScrollView(
@@ -27,7 +29,7 @@ class LoginWidget extends StatelessWidget {
             color: Colors.white.withValues(alpha: 0.9),
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: AppColors.primary.withValues(alpha: 0.3),
+              color: BingColors.primary.withValues(alpha: 0.3),
               width: 1.5,
             ),
             boxShadow: [
@@ -42,21 +44,22 @@ class LoginWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               CachedImage(
-                url: AppImages.logo.path,
+                url: BingImages.logo.path,
                 width: size.isMobile ? 120 : 150,
                 isCircle: true,
                 hasSolidBorder: true,
-                borderColor: AppColors.primary,
                 borderWidth: size.isMobile ? 3.0 : 4.0,
+                borderColor: BingColors.primary,
               ),
               const SizedBox(height: 20),
 
-              LoginTextField(label: "아이디", prefixIcon: Icons.alternate_email),
+              AuthTextField(label: "아이디", prefixIcon: Icons.alternate_email, controller: idController),
               const SizedBox(height: 16),
 
-              LoginTextField(
+              AuthTextField(
                 label: "비밀번호",
                 prefixIcon: Icons.lock_outline,
+                controller: passwordController,
                 isPasswordField: true,
               ),
               const SizedBox(height: 30),
@@ -90,12 +93,12 @@ class LoginWidget extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.pastelBlueSoft,
+          backgroundColor: BingColors.pastelBlueSoft,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           elevation: 0,
         ),
-        child: Text("로그인", style: size.isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
+        child: Text("로그인", style: size.isMobile ? BingTextStyles.buttonLabelSmall : BingTextStyles.buttonLabel),
       ),
     );
   }
@@ -120,12 +123,12 @@ class LoginWidget extends StatelessWidget {
       children: [
         const Text("아직 계정이 없으신가요?", style: TextStyle(color: Colors.grey)),
         TextButton(
-          onPressed: () => context.pushSafe(AppRoute.signUp),
+          onPressed: () => context.pushSafe(BingRoute.signUp),
           child: const Text(
             "회원가입",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: AppColors.primary,
+              color: BingColors.primary,
             ),
           ),
         ),

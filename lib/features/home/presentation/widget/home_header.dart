@@ -1,7 +1,7 @@
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
-import 'package:bing_web_frontend/core/constants/app_images.dart';
-import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
-import 'package:bing_web_frontend/core/router/app_route.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_images.dart';
+import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
+import 'package:bing_web_frontend/core/router/bing_route.dart';
 import 'package:bing_web_frontend/core/utils/extensions/box_constraints_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
@@ -23,7 +23,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
             children: [
               Container(
                 width: double.infinity,
-                color: AppColors.primary.withValues(alpha: 0.3),
+                color: BingColors.primary.withValues(alpha: 0.3),
                 child: Center(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(maxWidth: 1200),
@@ -40,21 +40,21 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 CachedImage(
-                                  url: AppImages.logo.path,
+                                  url: BingImages.logo.path,
                                   width: isMobile ? 40 : 65,
                                   height: isMobile ? 40 : 65,
                                   isCircle: true,
                                   hasSolidBorder: true,
                                   borderWidth: isMobile ? 2.0 : 3.0,
-                                  borderColor: AppColors.primary,
-                                  onTap: () => context.pushSafe(AppRoute.home),
+                                  borderColor: BingColors.primary,
+                                  onTap: () => context.pushSafe(BingRoute.home),
                                 ),
                                 const SizedBox(width: 20),
                                 Flexible(
                                   child: HoverButton(
                                       title: "빙구의 빈 공간",
-                                      style: isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo,
-                                      onTap: () => context.pushSafe(AppRoute.home)
+                                      style: isMobile ? BingTextStyles.headerLogoSmall : BingTextStyles.headerLogo,
+                                      onTap: () => context.pushSafe(BingRoute.home)
                                   ),
                                 ),
                               ],
@@ -62,15 +62,15 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                           ),
                           HoverButton(
                               title: "Login",
-                              style: isMobile ? AppTextStyles.headerMenuSmall : AppTextStyles.headerMenu,
-                              onTap: () => context.pushSafe(AppRoute.login)),
+                              style: isMobile ? BingTextStyles.headerMenuSmall : BingTextStyles.headerMenu,
+                              onTap: () => context.pushSafe(BingRoute.login)),
                         ],
                       ),
                     ),
                   ),
                 ),
               ),
-              const LineDivider(isVertical: false, width: double.infinity, height: 0, color: AppColors.primaryLight),
+              const LineDivider(isVertical: false, width: double.infinity, height: 0, color: BingColors.primaryLight),
               Container(
                 width: double.infinity,
                 color: Colors.white,
@@ -79,7 +79,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                   child: Center(child: _buildMenuSection(isMobile),),
                 ),
               ),
-              const LineDivider(isVertical: false, width: double.infinity, height: 0.0, color: AppColors.primaryLight),
+              const LineDivider(isVertical: false, width: double.infinity, height: 0.0, color: BingColors.primaryLight),
             ],
           );
         }
@@ -88,7 +88,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
 
   Widget _buildMenuSection(bool isMobile) {
     final double spacing = isMobile ? 15.0 : 30.0;
-    final style = isMobile ? AppTextStyles.headerMenuSmall : AppTextStyles.headerMenu;
+    final style = isMobile ? BingTextStyles.headerMenuSmall : BingTextStyles.headerMenu;
     return Wrap(
       spacing: spacing,
       runSpacing: 10,
@@ -109,7 +109,7 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
       isVertical: true,
       width: 1.0,
       height: isMobile ? 12.0 : 15.0,
-      color: AppColors.primary,
+      color: BingColors.primary,
     );
   }
 

@@ -1,10 +1,10 @@
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
-import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
 import 'package:flutter/services.dart';
 
-class AppDialog extends StatelessWidget {
+class BingDialog extends StatelessWidget {
   final String title;
   final String content;
 
@@ -15,7 +15,7 @@ class AppDialog extends StatelessWidget {
   final VoidCallback? onSecondaryConfirm;
   final String secondaryText;
 
-  const AppDialog({
+  const BingDialog({
     super.key,
     required this.title,
     required this.content,
@@ -50,7 +50,7 @@ class AppDialog extends StatelessWidget {
 
   Widget _buildDialog(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    final contentStyle = size.isMobile ? AppTextStyles.dialogBodySmall : AppTextStyles.dialogBody;
+    final contentStyle = size.isMobile ? BingTextStyles.dialogBodySmall : BingTextStyles.dialogBody;
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.symmetric(horizontal: 20),
@@ -65,7 +65,7 @@ class AppDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(title, style: size.isMobile ? AppTextStyles.dialogTitleSmall : AppTextStyles.dialogTitle),
+            Text(title, style: size.isMobile ? BingTextStyles.dialogTitleSmall : BingTextStyles.dialogTitle),
             const SizedBox(height: 15),
             RichText(
               textAlign: TextAlign.center,
@@ -84,7 +84,7 @@ class AppDialog extends StatelessWidget {
                         Navigator.pop(context);
                         onSecondaryConfirm?.call();
                       },
-                      child: Text(secondaryText, style: size.isMobile ? AppTextStyles.dialogButtonSecondarySmall : AppTextStyles.dialogButtonSecondary),
+                      child: Text(secondaryText, style: size.isMobile ? BingTextStyles.dialogButtonSecondarySmall : BingTextStyles.dialogButtonSecondary),
                     ),
                   ),
                   const SizedBox(width: 10),
@@ -96,7 +96,7 @@ class AppDialog extends StatelessWidget {
                       onConfirm?.call();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
+                      backgroundColor: BingColors.primary,
                       foregroundColor: Colors.white,
                       elevation: 0,
                       shape: RoundedRectangleBorder(
@@ -104,7 +104,7 @@ class AppDialog extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 15),
                     ),
-                    child: Text(confirmText, style: size.isMobile ? AppTextStyles.dialogButtonSmall : AppTextStyles.dialogButton),
+                    child: Text(confirmText, style: size.isMobile ? BingTextStyles.dialogButtonSmall : BingTextStyles.dialogButton),
                   ),
                 ),
               ],
@@ -128,7 +128,7 @@ class AppDialog extends StatelessWidget {
       // ** 사이의 강조 텍스트
       spans.add(TextSpan(
         text: match.group(1),
-        style: style.copyWith(fontWeight: FontWeight.bold, color: AppColors.primary),
+        style: style.copyWith(fontWeight: FontWeight.bold, color: BingColors.primary),
       ));
       lastIndex = match.end;
     }

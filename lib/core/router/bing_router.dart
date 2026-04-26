@@ -1,10 +1,10 @@
-import 'package:bing_web_frontend/core/router/app_route.dart';
+import 'package:bing_web_frontend/core/router/bing_route.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class AppRouter {
+class BingRouter {
   static final GoRouter router = GoRouter(
-    routes: AppRoute.routes.entries.map((entry) {
+    routes: BingRoute.routes.entries.map((entry) {
       return GoRoute(
         path: entry.key,
         pageBuilder: (context, state) {

@@ -1,25 +1,25 @@
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:flutter/material.dart';
 
-class AppTextStyles {
+class BingTextStyles {
   static const headerLogo = TextStyle(
-    color: AppColors.primaryDark,
+    color: BingColors.primaryDark,
     fontSize: 32,
     fontWeight: FontWeight.bold,
   );
   static const headerLogoSmall = TextStyle(
-    color: AppColors.primaryDark,
+    color: BingColors.primaryDark,
     fontSize: 24,
     fontWeight: FontWeight.bold,
     letterSpacing: -0.5,
   );
   static const headerMenu = TextStyle(
-    color: AppColors.textSecondary,
+    color: BingColors.textSecondary,
     fontSize: 20,
     fontWeight: FontWeight.bold,
   );
   static const headerMenuSmall = TextStyle(
-    color: AppColors.textSecondary,
+    color: BingColors.textSecondary,
     fontSize: 16,
     fontWeight: FontWeight.bold,
     letterSpacing: -0.3,
@@ -40,25 +40,25 @@ class AppTextStyles {
 
   // Dialog Styles
   static const dialogTitle = TextStyle(
-    color: AppColors.primaryDark,
+    color: BingColors.primaryDark,
     fontSize: 22,
     fontWeight: FontWeight.bold,
     letterSpacing: -0.5,
   );
   static const dialogTitleSmall = TextStyle(
-    color: AppColors.primaryDark,
+    color: BingColors.primaryDark,
     fontSize: 18,
     fontWeight: FontWeight.bold,
     letterSpacing: -0.4,
   );
   static const dialogBody = TextStyle(
-    color: AppColors.textSecondary,
+    color: BingColors.textSecondary,
     fontSize: 15,
     fontWeight: FontWeight.normal,
     height: 1.5,
   );
   static const dialogBodySmall = TextStyle(
-    color: AppColors.textSecondary,
+    color: BingColors.textSecondary,
     fontSize: 14,
     fontWeight: FontWeight.normal,
     height: 1.4,

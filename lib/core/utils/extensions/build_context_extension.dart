@@ -1,4 +1,4 @@
-import 'package:bing_web_frontend/core/widgets/app_dialog.dart';
+import 'package:bing_web_frontend/core/widgets/biing_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,7 +26,7 @@ extension BuildContextExtension on BuildContext {
       barrierColor: Colors.black.withValues(alpha: 0.5),
       transitionDuration: const Duration(milliseconds: 250),
       pageBuilder: (context, anim1, anim2) {
-        return AppDialog(
+        return BingDialog(
           title: title,
           content: content,
           onConfirm: onConfirm,

@@ -1,4 +1,4 @@
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
@@ -50,7 +50,7 @@ class _AuthTextFieldState extends ConsumerState<AuthTextField> {
       } : null,
       decoration: InputDecoration(
         labelText: widget.label,
-        errorStyle: const TextStyle(color: AppColors.error),
+        errorStyle: const TextStyle(color: BingColors.error),
         prefixIcon: Icon(widget.prefixIcon, size: 20),
         suffixIcon: widget.isPasswordField
             ? IconButton(
@@ -72,19 +72,19 @@ class _AuthTextFieldState extends ConsumerState<AuthTextField> {
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColors.primary.withValues(alpha: 0.1), width: 1),
+          borderSide: BorderSide(color: BingColors.primary.withValues(alpha: 0.1), width: 1),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: BorderSide(color: AppColors.primary.withValues(alpha: 0.4), width: 1.5),
+          borderSide: BorderSide(color: BingColors.primary.withValues(alpha: 0.4), width: 1.5),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: AppColors.errorLight, width: 1.0),
+          borderSide: const BorderSide(color: BingColors.errorLight, width: 1.0),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: AppColors.error, width: 1.5),
+          borderSide: const BorderSide(color: BingColors.error, width: 1.5),
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 18, horizontal: 20),
       ),

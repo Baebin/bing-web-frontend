@@ -1,6 +1,6 @@
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
-import 'package:bing_web_frontend/core/constants/app_images.dart';
-import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_images.dart';
+import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
 import 'package:bing_web_frontend/core/dto/response/api_error_response.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
@@ -85,10 +85,10 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
           width: size.isMobile ? size.width * 0.9 : 450,
           padding: const EdgeInsets.all(40),
           decoration: BoxDecoration(
-            color: AppColors.whiteOverlay,
+            color: BingColors.whiteOverlay,
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: AppColors.primary.withValues(alpha: 0.3),
+              color: BingColors.primary.withValues(alpha: 0.3),
               width: 1.5,
             ),
             boxShadow: [
@@ -103,12 +103,12 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               CachedImage(
-                url: AppImages.logo.path,
+                url: BingImages.logo.path,
                 width: size.isMobile ? 100 : 130,
                 isCircle: true,
                 hasSolidBorder: true,
                 borderWidth: size.isMobile ? 2.5 : 3.5,
-                borderColor: AppColors.primary,
+                borderColor: BingColors.primary,
               ),
               const SizedBox(height: 24),
 
@@ -116,7 +116,7 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    Text("빙구단 신청서", style: size.isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo),
+                    Text("빙구단 신청서", style: size.isMobile ? BingTextStyles.headerLogoSmall : BingTextStyles.headerLogo),
                     const SizedBox(height: 30),
 
                     AuthTextField(
@@ -186,14 +186,14 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
       child: ElevatedButton(
         onPressed: _handleSignUp,
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.pastelBlueSoft,
+          backgroundColor: BingColors.pastelBlueSoft,
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
           elevation: 0,
         ),
-        child: Text("회원가입", style: size.isMobile ? AppTextStyles.buttonLabelSmall : AppTextStyles.buttonLabel),
+        child: Text("회원가입", style: size.isMobile ? BingTextStyles.buttonLabelSmall : BingTextStyles.buttonLabel),
       ),
     );
   }

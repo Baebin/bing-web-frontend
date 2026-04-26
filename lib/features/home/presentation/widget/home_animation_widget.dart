@@ -1,6 +1,6 @@
 import 'dart:math';
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
-import 'package:bing_web_frontend/core/constants/app_images.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/utils/extensions/box_constraints_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
@@ -70,8 +70,8 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
                           colors: [
-                            AppColors.sandDark,
-                            AppColors.sandMain,
+                            BingColors.sandDark,
+                            BingColors.sandMain,
                           ],
                         ),
                         // 입체감을 위한 상단 경계 그림자
@@ -115,14 +115,14 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                     top: height * 0.1,
                     right: width * 0.05 + _getSineValue(0.2, 20),
                     width: isMobile ? width * 0.3 : 200,
-                    child: CachedImage(url: AppImages.cloudLarge.path),
+                    child: CachedImage(url: BingImages.cloudLarge.path),
                   ),
                   if (isDesktop)
                     Positioned(
                       top: height * 0.05,
                       left: width * 0.4 + _getSineValue(0.3, 25),
                       width: 180,
-                      child: CachedImage(url: AppImages.cloudLarge.path),
+                      child: CachedImage(url: BingImages.cloudLarge.path),
                     ),
 
                   // Medium Cloud
@@ -131,7 +131,7 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                       top: height * 0.15,
                       left: width * 0.1 + _getSineValue(0.4, 15),
                       width: 150,
-                      child: CachedImage(url: AppImages.cloudMedium.path),
+                      child: CachedImage(url: BingImages.cloudMedium.path),
                     ),
                   if (isDesktop)
                     Positioned(
@@ -140,7 +140,7 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                       width: 100,
                       child: Opacity(
                         opacity: 0.5,
-                        child: CachedImage(url: AppImages.cloudMedium.path),
+                        child: CachedImage(url: BingImages.cloudMedium.path),
                       ),
                     ),
 
@@ -149,7 +149,7 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                       top: height * 0.2 + _getSineValue(1.0, 5),
                       left: width * (isMobile ? 0.1 : 0.3) + _getSineValue(0.5, 40),
                       width: isMobile ? 70 : 100,
-                      child: CachedImage(url: AppImages.seagulls.path)
+                      child: CachedImage(url: BingImages.seagulls.path)
                   ),
 
                   // Beach Items
@@ -157,25 +157,25 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                     bottom: 45,
                     left: width * 0.2 + _getSineValue(0.2, 2),
                     width: isMobile ? 30 : 45,
-                    child: CachedImage(url: AppImages.beachItemOne.path),
+                    child: CachedImage(url: BingImages.beachItemOne.path),
                   ),
                   Positioned(
                     bottom: 20,
                     left: width * 0.45 + _getSineValue(0.3, 3),
                     width: isMobile ? 35 : 50,
-                    child: CachedImage(url: AppImages.beachItemTwo.path),
+                    child: CachedImage(url: BingImages.beachItemTwo.path),
                   ),
                   Positioned(
                     bottom: 60,
                     right: width * 0.35 + _getSineValue(0.25, 2),
                     width: isMobile ? 30 : 45,
-                    child: CachedImage(url: AppImages.beachItemThree.path),
+                    child: CachedImage(url: BingImages.beachItemThree.path),
                   ),
                   Positioned(
                     bottom: 25,
                     right: width * 0.15 + _getSineValue(0.4, 3),
                     width: isMobile ? 40 : 55,
-                    child: CachedImage(url: AppImages.beachItemFour.path),
+                    child: CachedImage(url: BingImages.beachItemFour.path),
                   ),
 
                   // Palm Tree
@@ -183,7 +183,7 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                     bottom: 0,
                     right: isMobile ? -50 : -20,
                     height: isMobile ? height * 0.35 : height * 0.5,
-                    child: CachedImage(url: AppImages.palmTrees.path),
+                    child: CachedImage(url: BingImages.palmTrees.path),
                   ),
 
                   // Flowers
@@ -191,7 +191,7 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                       bottom: -10,
                       left: -10,
                       width: height * 0.3,
-                      child: CachedImage(url: AppImages.flowers.path)
+                      child: CachedImage(url: BingImages.flowers.path)
                   ),
 
                   if (widget.hasText)
@@ -211,14 +211,14 @@ class _HomeAnimationWidgetState extends State<HomeAnimationWidget>
                       style: TextStyle(
                         fontSize: isMobile ? 24 : 40,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.primaryDark.withValues(alpha: 0.8),
+                        color: BingColors.primaryDark.withValues(alpha: 0.8),
                       ),
                     ),
                     const SizedBox(height: 15),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                       decoration: BoxDecoration(
-                        color: AppColors.primary.withValues(alpha: 0.5),
+                        color: BingColors.primary.withValues(alpha: 0.5),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: const Text(

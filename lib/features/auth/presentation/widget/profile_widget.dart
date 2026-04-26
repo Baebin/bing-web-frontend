@@ -1,6 +1,6 @@
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
-import 'package:bing_web_frontend/core/constants/app_images.dart';
-import 'package:bing_web_frontend/core/constants/app_text_styles.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_images.dart';
+import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
@@ -23,7 +23,7 @@ class ProfileWidget extends StatelessWidget {
             color: Colors.white.withValues(alpha: 0.9),
             borderRadius: BorderRadius.circular(30),
             border: Border.all(
-              color: AppColors.primary.withValues(alpha: 0.2),
+              color: BingColors.primary.withValues(alpha: 0.2),
               width: 1.5,
             ),
             boxShadow: [
@@ -42,13 +42,13 @@ class ProfileWidget extends StatelessWidget {
 
               Text(
                 "빙구 (Binggu)",
-                style: size.isMobile ? AppTextStyles.headerLogoSmall : AppTextStyles.headerLogo,
+                style: size.isMobile ? BingTextStyles.headerLogoSmall : BingTextStyles.headerLogo,
               ),
               const SizedBox(height: 8),
               Text(
                 "빙구의 빈 공간 - 개발과 일상을 기록합니다.",
                 textAlign: TextAlign.center,
-                style: size.isMobile ? AppTextStyles.dialogBodySmall : AppTextStyles.dialogBody,
+                style: size.isMobile ? BingTextStyles.dialogBodySmall : BingTextStyles.dialogBody,
               ),
               const SizedBox(height: 32),
 
@@ -81,12 +81,12 @@ class ProfileWidget extends StatelessWidget {
     return Stack(
       children: [
         CachedImage(
-          url: AppImages.logo.path, // 프로필 사진 경로
+          url: BingImages.logo.path, // 프로필 사진 경로
           width: size.isMobile ? 120 : 150,
           isCircle: true,
           hasSolidBorder: true,
           borderWidth: 4,
-          borderColor: AppColors.primary.withValues(alpha: 0.5),
+          borderColor: BingColors.primary.withValues(alpha: 0.5),
         ),
         // 상태 표시창
         Positioned(
@@ -122,7 +122,7 @@ class ProfileWidget extends StatelessWidget {
   Widget _buildStatItem(String label, String value) {
     return Column(
       children: [
-        Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppColors.primaryDark)),
+        Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: BingColors.primaryDark)),
         const SizedBox(height: 4),
         Text(label, style: const TextStyle(fontSize: 13, color: Colors.grey)),
       ],
@@ -147,8 +147,8 @@ class ProfileWidget extends StatelessWidget {
         icon: Icon(icon, size: 18),
         label: Text(label),
         style: OutlinedButton.styleFrom(
-          foregroundColor: isSecondary ? Colors.grey : AppColors.primary,
-          side: BorderSide(color: isSecondary ? Colors.grey.withValues(alpha: 0.3) : AppColors.primary),
+          foregroundColor: isSecondary ? Colors.grey : BingColors.primary,
+          side: BorderSide(color: isSecondary ? Colors.grey.withValues(alpha: 0.3) : BingColors.primary),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 0,
         ),

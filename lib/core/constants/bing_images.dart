@@ -1,4 +1,4 @@
-enum AppImages {
+enum BingImages {
   logo("logo", "png"),
 
   // Home Banner
@@ -15,7 +15,7 @@ enum AppImages {
 
   final String name;
   final String ext;
-  const AppImages(this.name, this.ext);
+  const BingImages(this.name, this.ext);
 
   String get path => "assets/images/$name.$ext";
 }

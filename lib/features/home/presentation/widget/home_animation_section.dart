@@ -1,4 +1,4 @@
-import 'package:bing_web_frontend/core/constants/app_colors.dart';
+import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/features/home/presentation/widget/home_animation_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -22,8 +22,8 @@ class _HomeAnimationSectionState extends State<HomeAnimationSection> {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.primaryLight,
-            AppColors.primary,
+            BingColors.primaryLight,
+            BingColors.primary,
           ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,

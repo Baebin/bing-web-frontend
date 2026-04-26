@@ -4,7 +4,7 @@ import 'package:bing_web_frontend/features/auth/presentation/page/sign_up_page.d
 import 'package:bing_web_frontend/features/home/presentation/page/home_page.dart';
 import 'package:flutter/material.dart';
 
-class AppRoute {
+class BingRoute {
   static const home = "/";
   static const login = "/login";
   static const signUp = "/signup";
