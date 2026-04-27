@@ -1,3 +1,4 @@
+import 'package:bing_web_frontend/core/auth/auth_provider.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
@@ -8,12 +9,14 @@ import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/hover_button.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
+class HomeHeader extends ConsumerWidget implements PreferredSizeWidget {
   const HomeHeader({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isBingJoined = ref.watch(isBingJoinedProvider).value ?? false;
     return LayoutBuilder(
         builder: (context, constraints) {
           final isMobile = constraints.isMobile;
@@ -61,9 +64,9 @@ class HomeHeader extends StatelessWidget implements PreferredSizeWidget {
                             ),
                           ),
                           HoverButton(
-                              title: "Login",
+                              title: isBingJoined ? "Profile" : "Login",
                               style: isMobile ? BingTextStyles.headerMenuSmall : BingTextStyles.headerMenu,
-                              onTap: () => context.pushSafe(BingRoute.login)),
+                              onTap: () => context.pushSafe(isBingJoined ? BingRoute.profile : BingRoute.login)),
                         ],
                       ),
                     ),
