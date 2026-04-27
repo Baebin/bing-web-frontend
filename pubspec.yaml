@@ -60,6 +60,10 @@ dependencies:
   # .env
   flutter_dotenv: ^6.0.1
 
+  # 데이터 관리
+  shared_preferences: ^2.5.5
+  # flutter_secure_storage: ^10.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -75,9 +79,6 @@ dev_dependencies:
   freezed: ^3.2.5
   build_runner: ^2.14.1
   json_serializable: ^6.13.1
-
-  # 데이터 관리
-  flutter_secure_storage: ^10.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
