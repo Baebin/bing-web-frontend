@@ -1,4 +1,4 @@
-import 'package:bing_web_frontend/core/widgets/biing_dialog.dart';
+import 'package:bing_web_frontend/core/widgets/bing_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

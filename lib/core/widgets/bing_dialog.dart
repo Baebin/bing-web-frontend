@@ -28,6 +28,15 @@ class BingDialog extends StatelessWidget {
     this.secondaryText = "취소",
   });
 
+  void _handleConfirm(BuildContext context) {
+    Navigator.pop(context);
+    if (hasSecondary) {
+      onSecondaryConfirm?.call();
+    } else {
+      onConfirm?.call();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return KeyboardListener(
@@ -36,15 +45,19 @@ class BingDialog extends StatelessWidget {
         if (event is KeyDownEvent &&
             (event.logicalKey == LogicalKeyboardKey.enter ||
                 event.logicalKey == LogicalKeyboardKey.numpadEnter)) {
-          Navigator.pop(context);
-          if (hasSecondary) {
-            onSecondaryConfirm?.call();
-          } else {
-            onConfirm?.call();
-          }
+          _handleConfirm(context);
         }
       },
-      child: _buildDialog(context),
+      child: GestureDetector(
+        onTap: () => _handleConfirm(context),
+        child: Material(
+          color: Colors.transparent,
+          child: GestureDetector(
+            onTap: () {},
+            child: _buildDialog(context),
+          )
+        ),
+      ),
     );
   }
 
