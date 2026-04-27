@@ -1,23 +1,79 @@
+import 'package:bing_web_frontend/core/auth/auth_provider.dart';
+import 'package:bing_web_frontend/core/auth/token_manager.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
+import 'package:bing_web_frontend/core/dto/response/api_error_response.dart';
+import 'package:bing_web_frontend/core/dto/response/token_response.dart';
 import 'package:bing_web_frontend/core/router/bing_route.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
+import 'package:bing_web_frontend/features/auth/dto/request/login_request.dart';
 import 'package:bing_web_frontend/features/auth/presentation/widget/auth_text_field.dart';
+import 'package:bing_web_frontend/features/auth/service/auth_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LoginWidget extends StatelessWidget {
+class LoginWidget extends ConsumerStatefulWidget {
   const LoginWidget({super.key});
+
+  @override
+  ConsumerState<LoginWidget> createState() => _LoginWidgetState();
+}
+
+class _LoginWidgetState extends ConsumerState<LoginWidget> {
+  static const alertName = "빙구단 입장 확인";
+
+  final _formKey = GlobalKey<FormState>();
+
+  final _idController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _idController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  void _handleLogin() async {
+    if (!_formKey.currentState!.validate()) return;
+
+    final id = _idController.text;
+    final password = _passwordController.text;
+
+    final authService = ref.read(authServiceProvider);
+    final result = await authService.login(
+        LoginRequest(id: id, password: password)
+    );
+    if (result is TokenResponse) {
+      final tokenManager = TokenManager();
+      await tokenManager.saveToken(result.accessToken);
+      ref.invalidate(isBingJoinedProvider);
+
+      if (!mounted) return;
+      context.showAlert(
+        title: alertName,
+        content: "로그인에 성공했습니다! 🎉",
+        onConfirm: () => context.pushSafe("/"),
+      );
+      return;
+    }
+    else if (result is ApiErrorResponse) {
+      if (!mounted) return;
+      context.showAlert(
+        title: alertName,
+        content: "로그인 실패: ${result.message} 😥",
+      );
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-
-    final idController = TextEditingController();
-    final passwordController = TextEditingController();
 
     return Center(
       child: SingleChildScrollView(
@@ -53,18 +109,32 @@ class LoginWidget extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              AuthTextField(label: "아이디", prefixIcon: Icons.alternate_email, controller: idController),
-              const SizedBox(height: 16),
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      AuthTextField(
+                        label: "아이디",
+                        prefixIcon: Icons.alternate_email,
+                        controller: _idController,
+                        hasValidator: true,
+                      ),
+                      const SizedBox(height: 16),
 
-              AuthTextField(
-                label: "비밀번호",
-                prefixIcon: Icons.lock_outline,
-                controller: passwordController,
-                isPasswordField: true,
+                      AuthTextField(
+                        label: "비밀번호",
+                        prefixIcon: Icons.lock_outline,
+                        controller: _passwordController,
+                        isPasswordField: true,
+                        hasValidator: true,
+                        onSubmitted: _handleLogin,
+                      ),
+                      const SizedBox(height: 30),
+
+                      _buildLoginButton(size),
+                    ],
+                  )
               ),
-              const SizedBox(height: 30),
-
-              _buildLoginButton(size),
               const SizedBox(height: 16),
 
               _buildFindAccountRow(),
@@ -91,7 +161,7 @@ class LoginWidget extends StatelessWidget {
       width: double.infinity,
       height: 55,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: _handleLogin,
         style: ElevatedButton.styleFrom(
           backgroundColor: BingColors.pastelBlueSoft,
           foregroundColor: Colors.white,
