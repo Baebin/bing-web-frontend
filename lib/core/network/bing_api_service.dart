@@ -2,28 +2,14 @@ import 'dart:io';
 
 import 'package:bing_web_frontend/core/dto/response/api_error_response.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger(printer: PrettyPrinter());
 
 abstract class BingApiService {
-  late final Dio dio;
+  final Dio dio;
 
-  BingApiService() {
-    final String baseUrl = dotenv.get("BING_API_URL");
-    logger.d("baseUrl: ${baseUrl}");
-
-    dio = Dio(
-      BaseOptions(
-        baseUrl: baseUrl,
-        connectTimeout: const Duration(seconds: 5),
-        receiveTimeout: const Duration(seconds: 3),
-        contentType: 'application/json',
-      ),
-    );
-    dio.interceptors.add(LogInterceptor(requestBody: true, responseBody: true));
-  }
+  BingApiService(this.dio);
 
   Future<dynamic> safeApiCall(
       Future<Response> Function() request, {
@@ -32,6 +18,7 @@ abstract class BingApiService {
     try {
       final response = await request();
       if (response.statusCode == HttpStatus.ok) {
+        logger.i("Api Success: ${response.requestOptions.method} ${response.requestOptions.path}");
         return onSuccess(response.data);
       }
       return ApiErrorResponse.unexpected(response);
@@ -48,7 +35,7 @@ abstract class BingApiService {
       try {
         return ApiErrorResponse.fromJson(e.response!.data);
       } catch (parseError) {
-        logger.e("에러 응답 파싱 실패: $parseError");
+        logger.e("Parsing Error: Path: ${e.requestOptions.path} | Error: $parseError");
         return ApiErrorResponse.parse();
       }
     }
