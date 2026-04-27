@@ -7,6 +7,7 @@ part 'account_response.g.dart';
 sealed class AccountResponse with _$AccountResponse {
   const factory AccountResponse({
     required String id,
+    required String nickname,
     required String email,
     @JsonKey(name: "reg_date") required String regDate,
   }) = _AccountResponse;

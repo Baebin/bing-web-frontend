@@ -7,6 +7,7 @@ part 'sign_up_request.g.dart';
 sealed class SignUpRequest with _$SignUpRequest {
   const factory SignUpRequest({
     required String id,
+    required String nickname,
     required String email,
     required String password,
   }) = _SignUpRequest;

@@ -24,6 +24,7 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
   final _formKey = GlobalKey<FormState>();
 
   final _idController = TextEditingController();
+  final _nicknameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordConfirmController = TextEditingController();
@@ -31,6 +32,7 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
   @override
   void dispose() {
     _idController.dispose();
+    _nicknameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     _passwordConfirmController.dispose();
@@ -41,6 +43,7 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
     if (!_formKey.currentState!.validate()) return;
 
     final id = _idController.text;
+    final nickname = _nicknameController.text;
     final email = _emailController.text;
     final password = _passwordController.text;
     final passwordConfirm = _passwordConfirmController.text;
@@ -54,7 +57,7 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
 
     final authService = ref.read(authServiceProvider);
     final result = await authService.signUp(
-      SignUpRequest(id: id, email: email, password: password)
+      SignUpRequest(id: id, nickname: nickname, email: email, password: password)
     );
     if (!mounted) return;
     if (result is bool && result == true) {
@@ -128,6 +131,14 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
                     const SizedBox(height: 16),
 
                     AuthTextField(
+                      label: "닉네임",
+                      prefixIcon: Icons.badge_outlined,
+                      controller: _nicknameController,
+                      hasValidator: true,
+                    ),
+                    const SizedBox(height: 16),
+
+                    AuthTextField(
                       label: "이메일",
                       prefixIcon: Icons.mail_outline,
                       controller: _emailController,
@@ -146,7 +157,7 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
 
                     AuthTextField(
                       label: "비밀번호 확인",
-                      prefixIcon: Icons.lock_reset,
+                      prefixIcon: Icons.enhanced_encryption_outlined,
                       controller: _passwordConfirmController,
                       isPasswordField: true,
                       hasValidator: true,

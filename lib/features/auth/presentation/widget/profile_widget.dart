@@ -67,7 +67,7 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
               const SizedBox(height: 24),
 
               Text(
-                userProfile == null ? "빙구 (Binggu)" : userProfile.email,
+                userProfile == null ? "빙구 (Binggu)" : userProfile.nickname,
                 style: size.isMobile ? BingTextStyles.headerLogoSmall : BingTextStyles.headerLogo,
               ),
               const SizedBox(height: 8),
