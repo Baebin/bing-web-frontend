@@ -1,3 +1,4 @@
+import 'package:bing_web_frontend/core/dto/response/account_response.dart';
 import 'package:bing_web_frontend/core/dto/response/token_response.dart';
 import 'package:bing_web_frontend/core/network/bing_api_service.dart';
 import 'package:bing_web_frontend/core/network/dio_provider.dart';
@@ -22,6 +23,13 @@ class AuthService extends BingApiService {
     return safeApiCall(
           () => dio.post("${_p}/login", data: request.toJson()),
       onSuccess: (data) => TokenResponse.fromJson(data),
+    );
+  }
+
+  Future<dynamic> getMyProfile() async {
+    return safeApiCall(
+          () => dio.get("${_p}/profile/me"),
+      onSuccess: (data) => AccountResponse.fromJson(data),
     );
   }
 }

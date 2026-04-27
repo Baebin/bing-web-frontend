@@ -57,7 +57,7 @@ class _LoginWidgetState extends ConsumerState<LoginWidget> {
       context.showAlert(
         title: alertName,
         content: "로그인에 성공했습니다! 🎉",
-        onConfirm: () => context.pushSafe("/"),
+        onConfirm: () => context.pushSafe(BingRoute.home),
       );
       return;
     }

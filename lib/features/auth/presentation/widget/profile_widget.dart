@@ -1,17 +1,43 @@
+import 'package:bing_web_frontend/core/auth/auth_provider.dart';
+import 'package:bing_web_frontend/core/auth/token_manager.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
+import 'package:bing_web_frontend/core/router/bing_route.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfileWidget extends StatelessWidget {
+class ProfileWidget extends ConsumerStatefulWidget {
   const ProfileWidget({super.key});
+
+  @override
+  ConsumerState<ProfileWidget> createState() => _ProfileWidgetState();
+}
+
+class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
+  static const alertName = "빙구단 프로필";
+
+  void _handleLogout() async {
+    final tokenManager = TokenManager();
+    await tokenManager.deleteToken();
+    ref.invalidate(isBingJoinedProvider);
+
+    if (!mounted) return;
+    context.showAlert(
+      title: alertName,
+      content: "로그아웃되었습니다. 다음에 또 만나요! 👋",
+      onConfirm: () => context.pushSafe(BingRoute.home),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+
+    final userProfile = ref.watch(userProfileProvider).value;
 
     return Center(
       child: SingleChildScrollView(
@@ -41,7 +67,7 @@ class ProfileWidget extends StatelessWidget {
               const SizedBox(height: 24),
 
               Text(
-                "빙구 (Binggu)",
+                userProfile == null ? "빙구 (Binggu)" : userProfile.email,
                 style: size.isMobile ? BingTextStyles.headerLogoSmall : BingTextStyles.headerLogo,
               ),
               const SizedBox(height: 8),
@@ -68,7 +94,7 @@ class ProfileWidget extends StatelessWidget {
                 label: "로그아웃",
                 icon: Icons.logout_rounded,
                 isSecondary: true,
-                onPressed: () {},
+                onPressed: _handleLogout,
               ),
             ],
           ),
@@ -81,7 +107,7 @@ class ProfileWidget extends StatelessWidget {
     return Stack(
       children: [
         CachedImage(
-          url: BingImages.logo.path, // 프로필 사진 경로
+          url: BingImages.logo.path,
           width: size.isMobile ? 120 : 150,
           isCircle: true,
           hasSolidBorder: true,
