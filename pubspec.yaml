@@ -76,6 +76,9 @@ dev_dependencies:
   build_runner: ^2.14.1
   json_serializable: ^6.13.1
 
+  # 데이터 관리
+  flutter_secure_storage: ^10.0.0
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
