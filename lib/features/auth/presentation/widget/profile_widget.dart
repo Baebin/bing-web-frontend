@@ -68,13 +68,25 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
 
               Text(
                 userProfile == null ? "빙구 (Binggu)" : userProfile.nickname,
-                style: size.isMobile ? BingTextStyles.headerLogoSmall : BingTextStyles.headerLogo,
+                style: size.isMobile ? BingTextStyles.profileNicknameSmall : BingTextStyles.profileNickname,
+              ),
+              const SizedBox(height: 4),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.calendar_month_outlined, size: 14, color: Colors.grey),
+                  const SizedBox(width: 4),
+                  Text(
+                    "가입일: ${userProfile?.regDate ?? "2004.05.05"}",
+                    style: size.isMobile ? BingTextStyles.profileJoinedDateSmall : BingTextStyles.profileJoinedDate,
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Text(
                 "빙구의 빈 공간 - 개발과 일상을 기록합니다.",
                 textAlign: TextAlign.center,
-                style: size.isMobile ? BingTextStyles.dialogBodySmall : BingTextStyles.dialogBody,
+                style: size.isMobile ? BingTextStyles.profileBodySmall : BingTextStyles.profileBody,
               ),
               const SizedBox(height: 32),
 

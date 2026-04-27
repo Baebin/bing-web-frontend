@@ -83,4 +83,41 @@ class BingTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
+
+  // Profile Styles
+  static const profileNickname = TextStyle(
+    color: BingColors.primaryDark,
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.5,
+  );
+  static const profileNicknameSmall = TextStyle(
+    color: BingColors.primaryDark,
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.4,
+  );
+  static const profileBody = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    height: 1.6,
+  );
+  static const profileBodySmall = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    height: 1.5,
+  );
+  static const profileJoinedDate = TextStyle(
+    color: BingColors.primary,
+    fontSize: 15,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 0.5,
+  );
+  static const profileJoinedDateSmall = TextStyle(
+    color: BingColors.primary,
+    fontSize: 13,
+    fontWeight: FontWeight.bold,
+  );
 }
