@@ -3,10 +3,14 @@ import 'package:bing_web_frontend/core/auth/token_manager.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
+import 'package:bing_web_frontend/core/dto/response/api_error_response.dart';
 import 'package:bing_web_frontend/core/router/bing_route.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
+import 'package:bing_web_frontend/core/widgets/hover_button.dart';
+import 'package:bing_web_frontend/features/account/dto/request/nickname_update_request.dart';
+import 'package:bing_web_frontend/features/account/service/account_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -31,6 +35,21 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
       content: "로그아웃되었습니다. 다음에 또 만나요! 👋",
       onConfirm: () => context.pushSafe(BingRoute.home),
     );
+  }
+
+  Future<dynamic> _handleNickname(String nickname) async {
+    final accountService = ref.read(accountServiceProvider);
+    final result = await accountService.updateNickname(
+        NicknameUpdateRequest(nickname: nickname)
+    );
+    if (!mounted) return;
+    if (result is bool && result == true) {
+      ref.invalidate(userProfileProvider);
+      return true;
+    }
+    else if (result is ApiErrorResponse) {
+      return result.message;
+    }
   }
 
   @override
@@ -66,9 +85,18 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
               _buildProfileImage(size),
               const SizedBox(height: 24),
 
-              Text(
-                userProfile == null ? "빙구 (Binggu)" : userProfile.nickname,
+              HoverButton(
+                title: userProfile == null ? "빙구 (Binggu)" : userProfile.nickname,
                 style: size.isMobile ? BingTextStyles.profileNicknameSmall : BingTextStyles.profileNickname,
+                onTap: () => context.showInputDialog(
+                    title: alertName,
+                    content: "빙구단에서 불릴 새 이름을 알려주세요!",
+                    initialValue: userProfile?.nickname ?? "빙구",
+                    hintText: "닉네임을 입력해주세요.",
+                    minLength: 2,
+                    maxLength: 10,
+                    onConfirm: _handleNickname,
+                ),
               ),
               const SizedBox(height: 4),
               Row(
