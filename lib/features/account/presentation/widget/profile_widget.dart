@@ -43,7 +43,6 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
     final result = await accountService.updateNickname(
         NicknameUpdateRequest(nickname: nickname)
     );
-    if (!mounted) return;
     if (result is bool && result == true) {
       ref.invalidate(userProfileProvider);
       return true;
@@ -58,7 +57,6 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
     final result = await accountService.updateBio(
         BioUpdateRequest(bio: bio)
     );
-    if (!mounted) return;
     if (result is bool && result == true) {
       ref.invalidate(userProfileProvider);
       return true;
@@ -111,7 +109,7 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
                     hintText: "닉네임을 입력해주세요.",
                     minLength: 2,
                     maxLength: 10,
-                    onConfirm: _updateBio,
+                    onConfirm: _updateNickname,
                 ),
               ),
               const SizedBox(height: 4),
