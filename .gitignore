@@ -46,3 +46,6 @@ app.*.map.json
 
 # Config
 /assets/config/bing.env
+
+# IDE
+devtools_options.yaml
