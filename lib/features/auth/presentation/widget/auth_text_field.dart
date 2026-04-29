@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
+final _obscureProvider = StateProvider.family.autoDispose<bool, String>((ref, id) => true);
+
 class AuthTextField extends ConsumerStatefulWidget {
   final String label;
   final IconData prefixIcon;
@@ -30,11 +32,10 @@ class AuthTextField extends ConsumerStatefulWidget {
 }
 
 class _AuthTextFieldState extends ConsumerState<AuthTextField> {
-  final _obscureProvider = StateProvider<bool>((ref) => true);
-
   @override
   Widget build(BuildContext context) {
-    final isObscure = widget.isPasswordField ? ref.watch(_obscureProvider) : false;
+    final providerId = identityHashCode(this).toString();
+    final isObscure = widget.isPasswordField ? ref.watch(_obscureProvider(providerId)) : false;
 
     return TextFormField(
       controller: widget.controller,
@@ -61,7 +62,7 @@ class _AuthTextFieldState extends ConsumerState<AuthTextField> {
             color: Colors.grey,
           ),
           onPressed: () {
-            ref.read(_obscureProvider.notifier).state = !isObscure;
+            ref.read(_obscureProvider(providerId).notifier).state = !isObscure;
           },
         ) : null,
         filled: true,

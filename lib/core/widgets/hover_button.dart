@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
 
+final _hoverProvider = StateProvider.family.autoDispose<bool, String>((ref, id) => false);
+
 class HoverButton extends ConsumerStatefulWidget {
   final String title;
   final TextStyle style;
@@ -19,15 +21,14 @@ class HoverButton extends ConsumerStatefulWidget {
 }
 
 class _HoverButtonState extends ConsumerState<HoverButton> {
-  final hoverProvider = StateProvider<bool>((ref) => false);
-
   @override
   Widget build(BuildContext context) {
-   final bool isHovered = ref.watch(hoverProvider);
+    final providerId = identityHashCode(this).toString();
+    final bool isHovered = ref.watch(_hoverProvider(providerId));
     return MouseRegion(
       cursor: SystemMouseCursors.click,
-      onEnter: (_) => ref.read(hoverProvider.notifier).update((state) => true),
-      onExit: (_) => ref.read(hoverProvider.notifier).update((state) => false),
+      onEnter: (_) => ref.read(_hoverProvider(providerId).notifier).state = true,
+      onExit: (_) => ref.read(_hoverProvider(providerId).notifier).state = false,
       child: GestureDetector(
         onTap: widget.onTap,
         child: AnimatedDefaultTextStyle(
