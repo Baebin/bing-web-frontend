@@ -1,4 +1,4 @@
-import 'package:bing_web_frontend/core/dto/response/account_response.dart';
+import 'package:bing_web_frontend/features/auth/dto/response/account_response.dart';
 import 'package:bing_web_frontend/core/network/bing_api_service.dart';
 import 'package:bing_web_frontend/core/network/dio_provider.dart';
 import 'package:bing_web_frontend/features/account/dto/request/bio_update_request.dart';

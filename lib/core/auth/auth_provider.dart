@@ -1,5 +1,5 @@
 import 'package:bing_web_frontend/core/auth/token_manager.dart';
-import 'package:bing_web_frontend/core/dto/response/account_response.dart';
+import 'package:bing_web_frontend/features/auth/dto/response/account_response.dart';
 import 'package:bing_web_frontend/features/account/service/account_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
