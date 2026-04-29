@@ -11,6 +11,7 @@ _AccountResponse _$AccountResponseFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       nickname: json['nickname'] as String,
       email: json['email'] as String,
+      bio: json['bio'] as String,
       regDate: json['reg_date'] as String,
     );
 
@@ -19,5 +20,6 @@ Map<String, dynamic> _$AccountResponseToJson(_AccountResponse instance) =>
       'id': instance.id,
       'nickname': instance.nickname,
       'email': instance.email,
+      'bio': instance.bio,
       'reg_date': instance.regDate,
     };

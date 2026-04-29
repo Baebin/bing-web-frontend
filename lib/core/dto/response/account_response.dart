@@ -9,6 +9,7 @@ sealed class AccountResponse with _$AccountResponse {
     required String id,
     required String nickname,
     required String email,
+    required String bio,
     @JsonKey(name: "reg_date") required String regDate,
   }) = _AccountResponse;
 

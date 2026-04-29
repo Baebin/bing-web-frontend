@@ -9,6 +9,7 @@ import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/hover_button.dart';
+import 'package:bing_web_frontend/features/account/dto/request/bio_update_request.dart';
 import 'package:bing_web_frontend/features/account/dto/request/nickname_update_request.dart';
 import 'package:bing_web_frontend/features/account/service/account_service.dart';
 import 'package:flutter/material.dart';
@@ -37,10 +38,25 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
     );
   }
 
-  Future<dynamic> _handleNickname(String nickname) async {
+  Future<dynamic> _updateNickname(String nickname) async {
     final accountService = ref.read(accountServiceProvider);
     final result = await accountService.updateNickname(
         NicknameUpdateRequest(nickname: nickname)
+    );
+    if (!mounted) return;
+    if (result is bool && result == true) {
+      ref.invalidate(userProfileProvider);
+      return true;
+    }
+    else if (result is ApiErrorResponse) {
+      return result.message;
+    }
+  }
+
+  Future<dynamic> _updateBio(String bio) async {
+    final accountService = ref.read(accountServiceProvider);
+    final result = await accountService.updateBio(
+        BioUpdateRequest(bio: bio)
     );
     if (!mounted) return;
     if (result is bool && result == true) {
@@ -95,7 +111,7 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
                     hintText: "닉네임을 입력해주세요.",
                     minLength: 2,
                     maxLength: 10,
-                    onConfirm: _handleNickname,
+                    onConfirm: _updateBio,
                 ),
               ),
               const SizedBox(height: 4),
@@ -111,10 +127,18 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
                 ],
               ),
               const SizedBox(height: 8),
-              Text(
-                "빙구의 빈 공간 - 개발과 일상을 기록합니다.",
-                textAlign: TextAlign.center,
+              HoverButton(
+                title: userProfile?.bio ?? "빙구의 빈 공간 - 개발과 일상을 기록합니다.",
                 style: size.isMobile ? BingTextStyles.profileBodySmall : BingTextStyles.profileBody,
+                onTap: () => context.showInputDialog(
+                  title: alertName,
+                  content: "빙구단원들에게 들려줄 짧은 인사를 남겨보세요!",
+                  initialValue: userProfile?.bio ?? "빙구단원",
+                  hintText: "프로필 소개를 입력해주세요.",
+                  minLength: 1,
+                  maxLength: 150,
+                  onConfirm: _updateBio,
+                ),
               ),
               const SizedBox(height: 32),
 
