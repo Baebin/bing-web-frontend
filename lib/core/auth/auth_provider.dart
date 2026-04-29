@@ -1,6 +1,6 @@
 import 'package:bing_web_frontend/core/auth/token_manager.dart';
 import 'package:bing_web_frontend/core/dto/response/account_response.dart';
-import 'package:bing_web_frontend/features/auth/service/auth_service.dart';
+import 'package:bing_web_frontend/features/account/service/account_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final isBingJoinedProvider = FutureProvider<bool>((ref) async {
@@ -11,8 +11,8 @@ final userProfileProvider = FutureProvider<AccountResponse?>((ref) async {
   final isJoined = await ref.watch(isBingJoinedProvider.future);
   if (!isJoined) return null;
 
-  final authService = ref.read(authServiceProvider);
-  final result = await authService.getMyProfile();
+  final accountService = ref.read(accountServiceProvider);
+  final result = await accountService.getMyProfile();
   if (result is AccountResponse) return result;
   return null;
 });
