@@ -63,6 +63,19 @@ class BingTextStyles {
     fontWeight: FontWeight.normal,
     height: 1.4,
   );
+  static const dialogStatusError = TextStyle(
+    color: Colors.redAccent,
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+    height: 1.2,
+  );
+
+  static const dialogStatusErrorSmall = TextStyle(
+    color: Colors.redAccent,
+    fontSize: 11,
+    fontWeight: FontWeight.w500,
+    height: 1.1,
+  );
   static const dialogButton = TextStyle(
     color: Colors.white,
     fontSize: 16,

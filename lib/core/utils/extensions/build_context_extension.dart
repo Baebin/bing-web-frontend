@@ -1,4 +1,5 @@
 import 'package:bing_web_frontend/core/widgets/bing_dialog.dart';
+import 'package:bing_web_frontend/core/widgets/bing_input_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,17 +9,7 @@ extension BuildContextExtension on BuildContext {
     if (currentLocation != location) push(location);
   }
 
-  void showAlert({
-    required String title,
-    required String content,
-
-    VoidCallback? onConfirm,
-    String confirmText = "확인",
-
-    bool hasSecondary = false,
-    VoidCallback? onSecondaryConfirm,
-    String secondaryText = "취소",
-  }) {
+  void _showAnimatedAlert(Widget dialog) {
     showGeneralDialog(
       context: this,
       barrierDismissible: true,
@@ -26,15 +17,7 @@ extension BuildContextExtension on BuildContext {
       barrierColor: Colors.black.withValues(alpha: 0.5),
       transitionDuration: const Duration(milliseconds: 250),
       pageBuilder: (context, anim1, anim2) {
-        return BingDialog(
-          title: title,
-          content: content,
-          onConfirm: onConfirm,
-          confirmText: confirmText,
-          hasSecondary: hasSecondary,
-          onSecondaryConfirm: onSecondaryConfirm,
-          secondaryText: secondaryText,
-        );
+        return dialog;
       },
       transitionBuilder: (context, anim1, anim2, child) {
         final isClosing = anim1.status == AnimationStatus.reverse;
@@ -51,6 +34,63 @@ extension BuildContextExtension on BuildContext {
           ),
         );
       },
+    );
+  }
+
+
+  void showAlert({
+    required String title,
+    required String content,
+
+    VoidCallback? onConfirm,
+    String confirmText = "확인",
+
+    bool hasSecondary = false,
+    VoidCallback? onSecondaryConfirm,
+    String secondaryText = "취소",
+  }) {
+    _showAnimatedAlert(
+        BingDialog(
+          title: title,
+          content: content,
+          onConfirm: onConfirm,
+          confirmText: confirmText,
+          hasSecondary: hasSecondary,
+          onSecondaryConfirm: onSecondaryConfirm,
+          secondaryText: secondaryText,
+        )
+    );
+  }
+
+  void showInputDialog({
+    required String title,
+    required String content,
+
+    required Future<dynamic> Function(String) onConfirm,
+
+    String? initialValue,
+    String hintText = "내용을 입력해주세요.",
+
+    int? minLength,
+    int? maxLength,
+    TextInputType keyboardType = TextInputType.text,
+
+    String confirmText = "확인",
+    String secondaryText = "취소",
+  }) {
+    _showAnimatedAlert(
+        BingInputDialog(
+          title: title,
+          content: content,
+          onConfirm: onConfirm,
+          initialValue: initialValue,
+          hintText: hintText,
+          minLength: minLength,
+          maxLength: maxLength,
+          keyboardType: keyboardType,
+          confirmText: confirmText,
+          secondaryText: secondaryText,
+        )
     );
   }
 }

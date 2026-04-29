@@ -4,7 +4,7 @@ import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
 import 'package:flutter/services.dart';
 
-class BingDialog extends StatelessWidget {
+class BingDialog extends StatefulWidget {
   final String title;
   final String content;
 
@@ -28,13 +28,22 @@ class BingDialog extends StatelessWidget {
     this.secondaryText = "취소",
   });
 
-  void _handleConfirm(BuildContext context) {
+  @override
+  State<BingDialog> createState() => _BingDialogState();
+}
+
+class _BingDialogState extends State<BingDialog> {
+  void _handleConfirm() {
     Navigator.pop(context);
-    if (hasSecondary) {
-      onSecondaryConfirm?.call();
+    if (widget.hasSecondary) {
+      widget.onSecondaryConfirm?.call();
     } else {
-      onConfirm?.call();
+      widget.onConfirm?.call();
     }
+  }
+
+  void _handleCancel() {
+    Navigator.pop(context);
   }
 
   @override
@@ -45,23 +54,23 @@ class BingDialog extends StatelessWidget {
         if (event is KeyDownEvent &&
             (event.logicalKey == LogicalKeyboardKey.enter ||
                 event.logicalKey == LogicalKeyboardKey.numpadEnter)) {
-          _handleConfirm(context);
+          _handleConfirm();
         }
       },
       child: GestureDetector(
-        onTap: () => _handleConfirm(context),
+        onTap: () => _handleConfirm(),
         child: Material(
           color: Colors.transparent,
           child: GestureDetector(
             onTap: () {},
-            child: _buildDialog(context),
+            child: _buildDialog(),
           )
         ),
       ),
     );
   }
 
-  Widget _buildDialog(BuildContext context) {
+  Widget _buildDialog() {
     final size = MediaQuery.sizeOf(context);
     final contentStyle = size.isMobile ? BingTextStyles.dialogBodySmall : BingTextStyles.dialogBody;
     return Dialog(
@@ -78,36 +87,39 @@ class BingDialog extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(title, style: size.isMobile ? BingTextStyles.dialogTitleSmall : BingTextStyles.dialogTitle),
+            Text(widget.title, style: size.isMobile ? BingTextStyles.dialogTitleSmall : BingTextStyles.dialogTitle),
             const SizedBox(height: 15),
             RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
                 style: contentStyle,
-                children: _parseContent(content, contentStyle),
+                children: _parseContent(widget.content, contentStyle),
               ),
             ),
             const SizedBox(height: 25),
             Row(
               children: [
-                if (hasSecondary) ...[
+                if (widget.hasSecondary) ...[
                   Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                        onSecondaryConfirm?.call();
-                      },
-                      child: Text(secondaryText, style: size.isMobile ? BingTextStyles.dialogButtonSecondarySmall : BingTextStyles.dialogButtonSecondary),
+                    child: ElevatedButton(
+                      onPressed: () => _handleCancel(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red.withValues(alpha: 0.6),
+                        foregroundColor: Colors.white,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                      ),
+                      child: Text(widget.secondaryText, style: size.isMobile ? BingTextStyles.dialogButtonSmall : BingTextStyles.dialogButton),
                     ),
                   ),
                   const SizedBox(width: 10),
                 ],
                 Expanded(
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                      onConfirm?.call();
-                    },
+                    onPressed: () => _handleConfirm(),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: BingColors.primary,
                       foregroundColor: Colors.white,
@@ -117,7 +129,7 @@ class BingDialog extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 15),
                     ),
-                    child: Text(confirmText, style: size.isMobile ? BingTextStyles.dialogButtonSmall : BingTextStyles.dialogButton),
+                    child: Text(widget.confirmText, style: size.isMobile ? BingTextStyles.dialogButtonSmall : BingTextStyles.dialogButton),
                   ),
                 ),
               ],
