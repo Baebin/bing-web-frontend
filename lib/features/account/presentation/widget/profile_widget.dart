@@ -43,6 +43,7 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
   Future<void> _updateAvatar() async {
     final fileResult = await FilePicker.pickFiles(
       type: FileType.image,
+      allowMultiple: false,
       withData: true,
     );
     if (fileResult != null && fileResult.files.first.bytes != null) {
