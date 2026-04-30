@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class CachedImage extends StatelessWidget {
   final String url;
+  final String? errorImageUrl;
 
   final double? width;
   final double? height;
@@ -29,6 +30,7 @@ class CachedImage extends StatelessWidget {
     super.key,
 
     required this.url,
+    this.errorImageUrl,
 
     this.width,
     this.height,
@@ -50,12 +52,7 @@ class CachedImage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget widget;
     if (url.startsWith("assets/")) {
-      widget = Image.asset(
-        url,
-        width: width,
-        height: height,
-        fit: fit,
-      );
+      widget = _buildAssetImage(url);
     }
     else {
       widget = CachedNetworkImage(
@@ -65,7 +62,7 @@ class CachedImage extends StatelessWidget {
         fit: fit,
         placeholder: (context, url) =>
         const Center(child: CircularProgressIndicator()),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+        errorWidget: (context, url, error) => _handleErrorImage(),
       );
     }
     if (isCircle) widget = ClipOval(child: widget);
@@ -95,7 +92,7 @@ class CachedImage extends StatelessWidget {
       );
     }
     if (onTap != null) {
-      return GestureDetector(
+      return InkWell(
         onTap: onTap,
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
@@ -104,5 +101,27 @@ class CachedImage extends StatelessWidget {
       );
     }
     return widget;
+  }
+
+  Widget _handleErrorImage() {
+    if (errorImageUrl != null) {
+      return errorImageUrl!.startsWith("assets/")
+          ? _buildAssetImage(errorImageUrl!)
+          : _buildNetworkImage(errorImageUrl!);
+    }
+    return Container(
+      width: width,
+      height: height,
+      color: Colors.grey[200],
+      child: const Icon(Icons.image_not_supported, color: Colors.grey),
+    );
+  }
+
+  Widget _buildAssetImage(String url) {
+    return Image.asset(url, width: width, height: height, fit: fit);
+  }
+
+  Widget _buildNetworkImage(String path) {
+    return Image.network(path, width: width, height: height, fit: fit);
   }
 }

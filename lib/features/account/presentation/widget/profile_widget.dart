@@ -12,6 +12,8 @@ import 'package:bing_web_frontend/core/widgets/hover_button.dart';
 import 'package:bing_web_frontend/features/account/dto/request/bio_update_request.dart';
 import 'package:bing_web_frontend/features/account/dto/request/nickname_update_request.dart';
 import 'package:bing_web_frontend/features/account/service/account_service.dart';
+import 'package:bing_web_frontend/features/auth/dto/response/account_response.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,6 +38,35 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
       content: "로그아웃되었습니다. 다음에 또 만나요! 👋",
       onConfirm: () => context.pushSafe(BingRoute.home),
     );
+  }
+
+  Future<void> _updateAvatar() async {
+    final fileResult = await FilePicker.pickFiles(
+      type: FileType.image,
+      withData: true,
+    );
+    if (fileResult != null && fileResult.files.first.bytes != null) {
+      final file = fileResult.files.first;
+      final result = await ref.read(accountServiceProvider).updateAvatar(
+        file.bytes!,
+        file.name,
+      );
+
+      if (!mounted) return;
+      if (result is bool && result == true) {
+        ref.invalidate(userProfileProvider);
+        context.showAlert(
+            title: alertName,
+            content: "프로필 사진이 변경되었어요! 😊",
+        );
+      }
+      else if (result is ApiErrorResponse) {
+        context.showAlert(
+          title: alertName,
+          content: "서버가 잠시 졸고 있나 봐요. 😴\n다시 시도해 주세요!",
+        );
+      }
+    }
   }
 
   Future<dynamic> _updateNickname(String nickname) async {
@@ -96,7 +127,7 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _buildProfileImage(size),
+              _buildProfileImage(size, userProfile),
               const SizedBox(height: 24),
 
               HoverButton(
@@ -165,31 +196,48 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
     );
   }
 
-  Widget _buildProfileImage(Size size) {
+  Widget _buildProfileImage(Size size, AccountResponse? userProfile) {
+    final accountService = ref.read(accountServiceProvider);
     return Stack(
       children: [
         CachedImage(
-          url: BingImages.logo.path,
+          url: userProfile == null ? BingImages.logo.path : accountService.getAvatarUrl(userProfile.idx),
+          errorImageUrl: BingImages.logo.path,
           width: size.isMobile ? 120 : 150,
+          height: size.isMobile ? 120 : 150,
           isCircle: true,
           hasSolidBorder: true,
           borderWidth: 4,
           borderColor: BingColors.primary.withValues(alpha: 0.5),
+          onTap: _updateAvatar,
         ),
-        // 상태 표시창
         Positioned(
-          bottom: 5,
-          right: 5,
+          bottom: 4,
+          right: 4,
           child: Container(
-            width: 25,
-            height: 25,
+            padding: const EdgeInsets.all(7),
             decoration: BoxDecoration(
-              color: Colors.greenAccent,
+              color: BingColors.primary,
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.white, width: 3),
+              border: Border.all(
+                color: Colors.white,
+                width: 2.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: BingColors.primaryShadow,
+                  blurRadius: 6,
+                  offset: const Offset(0, 3),
+                ),
+              ],
+            ),
+            child: const Icon(
+              Icons.camera_alt_rounded,
+              color: Colors.white,
+              size: 16,
             ),
           ),
-        ),
+        )
       ],
     );
   }

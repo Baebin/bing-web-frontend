@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AccountResponse {
 
- String get id; String get nickname; String get email; String get bio;@JsonKey(name: "reg_date") String get regDate;
+ String get id; int get idx; String get nickname; String get email; String get bio;@JsonKey(name: "reg_date") String get regDate;
 /// Create a copy of AccountResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $AccountResponseCopyWith<AccountResponse> get copyWith => _$AccountResponseCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AccountResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.email, email) || other.email == email)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.regDate, regDate) || other.regDate == regDate));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AccountResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.email, email) || other.email == email)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.regDate, regDate) || other.regDate == regDate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,nickname,email,bio,regDate);
+int get hashCode => Object.hash(runtimeType,id,idx,nickname,email,bio,regDate);
 
 @override
 String toString() {
-  return 'AccountResponse(id: $id, nickname: $nickname, email: $email, bio: $bio, regDate: $regDate)';
+  return 'AccountResponse(id: $id, idx: $idx, nickname: $nickname, email: $email, bio: $bio, regDate: $regDate)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $AccountResponseCopyWith<$Res>  {
   factory $AccountResponseCopyWith(AccountResponse value, $Res Function(AccountResponse) _then) = _$AccountResponseCopyWithImpl;
 @useResult
 $Res call({
- String id, String nickname, String email, String bio,@JsonKey(name: "reg_date") String regDate
+ String id, int idx, String nickname, String email, String bio,@JsonKey(name: "reg_date") String regDate
 });
 
 
@@ -65,10 +65,11 @@ class _$AccountResponseCopyWithImpl<$Res>
 
 /// Create a copy of AccountResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? nickname = null,Object? email = null,Object? bio = null,Object? regDate = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? idx = null,Object? nickname = null,Object? email = null,Object? bio = null,Object? regDate = null,}) {
   return _then(_self.copyWith(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,nickname: null == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
+as String,idx: null == idx ? _self.idx : idx // ignore: cast_nullable_to_non_nullable
+as int,nickname: null == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,bio: null == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
 as String,regDate: null == regDate ? _self.regDate : regDate // ignore: cast_nullable_to_non_nullable
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String nickname,  String email,  String bio, @JsonKey(name: "reg_date")  String regDate)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  int idx,  String nickname,  String email,  String bio, @JsonKey(name: "reg_date")  String regDate)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AccountResponse() when $default != null:
-return $default(_that.id,_that.nickname,_that.email,_that.bio,_that.regDate);case _:
+return $default(_that.id,_that.idx,_that.nickname,_that.email,_that.bio,_that.regDate);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.id,_that.nickname,_that.email,_that.bio,_that.regDate);cas
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String nickname,  String email,  String bio, @JsonKey(name: "reg_date")  String regDate)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  int idx,  String nickname,  String email,  String bio, @JsonKey(name: "reg_date")  String regDate)  $default,) {final _that = this;
 switch (_that) {
 case _AccountResponse():
-return $default(_that.id,_that.nickname,_that.email,_that.bio,_that.regDate);}
+return $default(_that.id,_that.idx,_that.nickname,_that.email,_that.bio,_that.regDate);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -192,10 +193,10 @@ return $default(_that.id,_that.nickname,_that.email,_that.bio,_that.regDate);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String nickname,  String email,  String bio, @JsonKey(name: "reg_date")  String regDate)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  int idx,  String nickname,  String email,  String bio, @JsonKey(name: "reg_date")  String regDate)?  $default,) {final _that = this;
 switch (_that) {
 case _AccountResponse() when $default != null:
-return $default(_that.id,_that.nickname,_that.email,_that.bio,_that.regDate);case _:
+return $default(_that.id,_that.idx,_that.nickname,_that.email,_that.bio,_that.regDate);case _:
   return null;
 
 }
@@ -207,10 +208,11 @@ return $default(_that.id,_that.nickname,_that.email,_that.bio,_that.regDate);cas
 @JsonSerializable()
 
 class _AccountResponse implements AccountResponse {
-  const _AccountResponse({required this.id, required this.nickname, required this.email, required this.bio, @JsonKey(name: "reg_date") required this.regDate});
+  const _AccountResponse({required this.id, required this.idx, required this.nickname, required this.email, required this.bio, @JsonKey(name: "reg_date") required this.regDate});
   factory _AccountResponse.fromJson(Map<String, dynamic> json) => _$AccountResponseFromJson(json);
 
 @override final  String id;
+@override final  int idx;
 @override final  String nickname;
 @override final  String email;
 @override final  String bio;
@@ -229,16 +231,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AccountResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.email, email) || other.email == email)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.regDate, regDate) || other.regDate == regDate));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AccountResponse&&(identical(other.id, id) || other.id == id)&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.email, email) || other.email == email)&&(identical(other.bio, bio) || other.bio == bio)&&(identical(other.regDate, regDate) || other.regDate == regDate));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,id,nickname,email,bio,regDate);
+int get hashCode => Object.hash(runtimeType,id,idx,nickname,email,bio,regDate);
 
 @override
 String toString() {
-  return 'AccountResponse(id: $id, nickname: $nickname, email: $email, bio: $bio, regDate: $regDate)';
+  return 'AccountResponse(id: $id, idx: $idx, nickname: $nickname, email: $email, bio: $bio, regDate: $regDate)';
 }
 
 
@@ -249,7 +251,7 @@ abstract mixin class _$AccountResponseCopyWith<$Res> implements $AccountResponse
   factory _$AccountResponseCopyWith(_AccountResponse value, $Res Function(_AccountResponse) _then) = __$AccountResponseCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String nickname, String email, String bio,@JsonKey(name: "reg_date") String regDate
+ String id, int idx, String nickname, String email, String bio,@JsonKey(name: "reg_date") String regDate
 });
 
 
@@ -266,10 +268,11 @@ class __$AccountResponseCopyWithImpl<$Res>
 
 /// Create a copy of AccountResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? nickname = null,Object? email = null,Object? bio = null,Object? regDate = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? idx = null,Object? nickname = null,Object? email = null,Object? bio = null,Object? regDate = null,}) {
   return _then(_AccountResponse(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String,nickname: null == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
+as String,idx: null == idx ? _self.idx : idx // ignore: cast_nullable_to_non_nullable
+as int,nickname: null == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
 as String,email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String,bio: null == bio ? _self.bio : bio // ignore: cast_nullable_to_non_nullable
 as String,regDate: null == regDate ? _self.regDate : regDate // ignore: cast_nullable_to_non_nullable
