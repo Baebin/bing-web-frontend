@@ -49,7 +49,7 @@ class _LoginWidgetState extends ConsumerState<LoginWidget> {
         LoginRequest(id: id, password: password)
     );
     if (result is TokenResponse) {
-      final tokenManager = TokenManager();
+      final tokenManager = ref.read(tokenManagerProvider);
       await tokenManager.saveToken(result.accessToken);
       ref.invalidate(isBingJoinedProvider);
 

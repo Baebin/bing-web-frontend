@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -6,9 +7,7 @@ var logger = Logger(printer: PrettyPrinter());
 class TokenManager {
   static const String _accessTokenKey = "access_key";
 
-  static final TokenManager _instance = TokenManager._internal();
-  factory TokenManager() => _instance;
-  TokenManager._internal();
+  TokenManager();
 
   Future<void> saveToken(String token) async {
     try {
@@ -37,3 +36,7 @@ class TokenManager {
     logger.i("토큰 삭제 완료");
   }
 }
+
+final tokenManagerProvider = Provider((ref) {
+  return TokenManager();
+});

@@ -5,7 +5,6 @@ import 'package:bing_web_frontend/core/router/bing_route.dart';
 import 'package:bing_web_frontend/core/router/bing_router.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import '../../core/auth/token_manager.dart';
@@ -15,13 +14,12 @@ var logger = Logger(printer: PrettyPrinter());
 class AuthInterceptor extends Interceptor {
   final Ref ref;
   final Dio dio;
-  final _tokenManager = TokenManager();
 
   AuthInterceptor(this.ref, this.dio);
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
-    final token = await _tokenManager.getToken();
+    final token = await ref.read(tokenManagerProvider).getToken();
     if (token != null) options.headers['Authorization'] = 'Bearer $token';
     return handler.next(options);
   }
@@ -38,7 +36,7 @@ class AuthInterceptor extends Interceptor {
 
   Future<void> _handleTokenExpired(DioException err) async {
     logger.w("인증 만료 감지: ${err.requestOptions.path} 요청 실패. 토큰을 삭제합니다.");
-    await _tokenManager.deleteToken();
+    await ref.read(tokenManagerProvider).deleteToken();
 
     var context = navigatorKey.currentContext;
     if (context == null || !context.mounted) return;

@@ -26,7 +26,7 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
   static const alertName = "빙구단 프로필";
 
   void _handleLogout() async {
-    final tokenManager = TokenManager();
+    final tokenManager = ref.read(tokenManagerProvider);
     await tokenManager.deleteToken();
     ref.invalidate(isBingJoinedProvider);
 
