@@ -4,9 +4,34 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 extension BuildContextExtension on BuildContext {
-  void pushSafe(String location) {
-    final String currentLocation = GoRouterState.of(this).uri.toString();
-    if (currentLocation != location) push(location);
+  String get currentLocation => GoRouterState.of(this).uri.toString();
+  String get currentPath => GoRouterState.of(this).uri.path;
+
+  Map<String, String> get queryParameters => GoRouterState.of(this).uri.queryParameters;
+
+  String? queryParam(String key) => queryParameters[key];
+
+  String _buildLocation(String location, Map<String, dynamic>? queryParameters) {
+    if (queryParameters == null || queryParameters.isEmpty) return location;
+    return Uri(path: location, queryParameters: queryParameters).toString();
+  }
+
+  // 현재 페이지 파괴 (기존 데이터 소멸)
+  void goSafe(String location, { Map<String, dynamic>? queryParameters }) {
+    final target = _buildLocation(location, queryParameters);
+    if (currentLocation != target) go(target);
+  }
+
+  // 현재 페이지 유지 (기존 데이터 유지)
+  void pushSafe(String location, {Map<String, dynamic>? queryParameters}) {
+    final target = _buildLocation(location, queryParameters);
+    if (currentLocation != target) push(target);
+  }
+
+  // 현재 페이지 교체 (기존 데이터 소멸)
+  void replaceSafe(String location, {Map<String, dynamic>? queryParameters}) {
+    final target = _buildLocation(location, queryParameters);
+    if (currentLocation != target) replace(target);
   }
 
   void _showAnimatedAlert(Widget dialog) {

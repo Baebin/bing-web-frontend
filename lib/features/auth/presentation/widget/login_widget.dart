@@ -15,6 +15,7 @@ import 'package:bing_web_frontend/features/auth/presentation/widget/auth_text_fi
 import 'package:bing_web_frontend/features/auth/service/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginWidget extends ConsumerStatefulWidget {
   const LoginWidget({super.key});
@@ -57,7 +58,10 @@ class _LoginWidgetState extends ConsumerState<LoginWidget> {
       context.showAlert(
         title: alertName,
         content: "로그인에 성공했습니다! 🎉",
-        onConfirm: () => context.pushSafe(BingRoute.home),
+        onConfirm: () {
+          final from = context.queryParam("from");
+          context.goSafe(from ?? BingRoute.home);
+        },
       );
       return;
     }
