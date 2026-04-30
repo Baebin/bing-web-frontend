@@ -13,7 +13,7 @@ final dioProvider = Provider<Dio>((ref) {
     ),
   );
   dio.interceptors.addAll([
-    AuthInterceptor(dio),
+    AuthInterceptor(ref, dio),
     LogInterceptor(requestBody: true, responseBody: true),
   ]);
   return dio;
