@@ -4,7 +4,7 @@ import 'package:bing_web_frontend/features/account/service/account_service.dart'
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final isBingJoinedProvider = FutureProvider<bool>((ref) async {
-  return await ref.watch(tokenManagerProvider).hasToken();
+  return !(await ref.read(tokenManagerProvider).isExpired());
 });
 
 final userProfileProvider = FutureProvider<AccountResponse?>((ref) async {
