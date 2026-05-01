@@ -133,4 +133,37 @@ class BingTextStyles {
     fontSize: 13,
     fontWeight: FontWeight.bold,
   );
+
+  // Editor Styles
+  static const editorTitle = TextStyle(
+    color: BingColors.primaryDark,
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.5,
+  );
+  static const editorTitleSmall = TextStyle(
+    color: BingColors.primaryDark,
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.4,
+  );
+
+  static const editorHint = TextStyle(
+    color: Colors.grey,
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.5,
+  );
+  static const editorHintSmall = TextStyle(
+    color: Colors.grey,
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.4,
+  );
+
+  static const editorBody = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 16,
+    height: 1.6,
+  );
 }

@@ -1,8 +1,9 @@
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/router/bing_router.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,8 +29,20 @@ class MyApp extends StatelessWidget {
       routerConfig: BingRouter.router,
       debugShowCheckedModeBanner: false,
 
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+
+        FlutterQuillLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('ko', 'KR'),
+        Locale('en', 'US'),
+      ],
       title: "빙구의 공간",
       theme: ThemeData(
+        useMaterial3: true,
         scaffoldBackgroundColor: BingColors.background,
       ),
     );

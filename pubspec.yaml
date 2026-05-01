@@ -67,6 +67,9 @@ dependencies:
   # 파일 업로드
   file_picker: ^11.0.2
 
+  # 텍스트 에디터
+  flutter_quill: ^11.5.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
