@@ -3,6 +3,7 @@ import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
 import 'package:bing_web_frontend/core/router/bing_route.dart';
+import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:bing_web_frontend/core/widgets/cached_image.dart';
 import 'package:bing_web_frontend/core/widgets/line_divider.dart';
@@ -123,21 +124,21 @@ class _CommunityWidgetState extends ConsumerState<CommunityWidget> {
     final isBingJoined = ref.watch(isBingJoinedProvider).value ?? false;
     return Padding(
       padding: EdgeInsets.fromLTRB(
-        size.isMobile ? 20 : 32,
+        size.isMobile ? 24 : 66,
         size.isMobile ? 24 : 40,
         size.isMobile ? 20 : 32,
         size.isMobile ? 16 : 24,
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             "빙구단 커뮤니티",
             style: size.isMobile ? BingTextStyles.postListMainTitleSmall : BingTextStyles.postListMainTitle,
           ),
           if (isBingJoined) ElevatedButton.icon(
-            onPressed: () => context.push(BingRoute.communityPost),
+            onPressed: () => context.goSafe(BingRoute.communityPost),
             icon: Icon(Icons.edit, size: size.isMobile ? 16 : 18),
             label: Text(
               "새글쓰기",
@@ -243,29 +244,38 @@ class _CommunityWidgetState extends ConsumerState<CommunityWidget> {
               height: 32,
               isCircle: true,
             ),
-            const SizedBox(width: 16),
+            const SizedBox(width: 10),
 
             Expanded(
-              child: size.isMobile ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: size.isMobile ? Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text(
-                    post.title,
-                    style: BingTextStyles.postListItemTitleSmall,
-                    overflow: TextOverflow.ellipsis,
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          post.title,
+                          style: BingTextStyles.postListItemTitleSmall,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                        const SizedBox(height: 4),
+                        Row(
+                          children: [
+                            _buildMobileStatItem(Icons.remove_red_eye_outlined, post.viewCount.toString()),
+                            const SizedBox(width: 8),
+                            _buildMobileStatItem(Icons.chat_bubble_outline, post.commentCount.toString()),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      _buildMobileStatItem(Icons.remove_red_eye_outlined, post.viewCount.toString()),
-                      const SizedBox(width: 8),
-                      _buildMobileStatItem(Icons.chat_bubble_outline, post.commentCount.toString()),
-                      const SizedBox(width: 8),
-                      Text(
-                        post.createdAt.split(" ").first,
-                        style: BingTextStyles.postListItemMetaSmall,
-                      ),
-                    ],
+                  const SizedBox(width: 16),
+                  Text(
+                    post.createdAt.split(" ").first,
+                    style: BingTextStyles.postListItemMetaSmall,
                   ),
                 ],
               ) : Text(
