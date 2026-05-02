@@ -50,14 +50,14 @@ class HomeHeader extends ConsumerWidget implements PreferredSizeWidget {
                                   hasSolidBorder: true,
                                   borderWidth: isMobile ? 2.0 : 3.0,
                                   borderColor: BingColors.primary,
-                                  onTap: () => context.pushSafe(BingRoute.home),
+                                  onTap: () => context.goSafe(BingRoute.home),
                                 ),
                                 const SizedBox(width: 20),
                                 Flexible(
                                   child: HoverButton(
                                       title: "빙구의 빈 공간",
                                       style: isMobile ? BingTextStyles.headerLogoSmall : BingTextStyles.headerLogo,
-                                      onTap: () => context.pushSafe(BingRoute.home)
+                                      onTap: () => context.goSafe(BingRoute.home)
                                   ),
                                 ),
                               ],
@@ -66,7 +66,7 @@ class HomeHeader extends ConsumerWidget implements PreferredSizeWidget {
                           HoverButton(
                               title: isBingJoined ? "Profile" : "Login",
                               style: isMobile ? BingTextStyles.headerMenuSmall : BingTextStyles.headerMenu,
-                              onTap: () => context.pushSafe(isBingJoined ? BingRoute.profile : BingRoute.login)),
+                              onTap: () => context.goSafe(isBingJoined ? BingRoute.profile : BingRoute.login)),
                         ],
                       ),
                     ),

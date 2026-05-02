@@ -36,7 +36,7 @@ class _ProfileWidgetState extends ConsumerState<ProfileWidget> {
     context.showAlert(
       title: alertName,
       content: "로그아웃되었습니다. 다음에 또 만나요! 👋",
-      onConfirm: () => context.pushSafe(BingRoute.home),
+      onConfirm: () => context.goSafe(BingRoute.home),
     );
   }
 
