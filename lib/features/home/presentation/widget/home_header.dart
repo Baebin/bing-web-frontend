@@ -79,7 +79,7 @@ class HomeHeader extends ConsumerWidget implements PreferredSizeWidget {
                 color: Colors.white,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-                  child: Center(child: _buildMenuSection(isMobile),),
+                  child: Center(child: _buildMenuSection(context, isMobile)),
                 ),
               ),
               const LineDivider(isVertical: false, width: double.infinity, height: 0.0, color: BingColors.primaryLight),
@@ -89,7 +89,7 @@ class HomeHeader extends ConsumerWidget implements PreferredSizeWidget {
     );
   }
 
-  Widget _buildMenuSection(bool isMobile) {
+  Widget _buildMenuSection(BuildContext context, bool isMobile) {
     final double spacing = isMobile ? 15.0 : 30.0;
     final style = isMobile ? BingTextStyles.headerMenuSmall : BingTextStyles.headerMenu;
     return Wrap(
@@ -102,7 +102,7 @@ class HomeHeader extends ConsumerWidget implements PreferredSizeWidget {
         _buildDivider(isMobile),
         HoverButton(title: "Blog", style: style, onTap: () {}),
         _buildDivider(isMobile),
-        HoverButton(title: "Community", style: style, onTap: () {}),
+        HoverButton(title: "Community", style: style, onTap: () => context.goSafe(BingRoute.community)),
       ],
     );
   }

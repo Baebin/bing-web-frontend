@@ -166,4 +166,55 @@ class BingTextStyles {
     fontSize: 16,
     height: 1.6,
   );
+
+  // Post List Styles
+  static const postListMainTitle = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    letterSpacing: -0.5,
+  );
+  static const postListMainTitleSmall = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const postListHeader = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 16,
+    fontWeight: FontWeight.bold,
+  );
+  static const postListItemTitleSmall = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const postListItemTitle = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+  static const postListHeaderSmall = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const postListItemMeta = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+  );
+  static const postListItemMetaSmall = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+  );
+
+  static const postPagingNumber = TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
 }
