@@ -55,12 +55,14 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
+    final double verticalMargin = size.isMobile ? 10 : 50;
 
     return Center(
       child: Container(
         width: size.isMobile ? size.width * 0.9 : 850,
-        margin: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-        padding: const EdgeInsets.all(20),
+        height: size.height - (verticalMargin * 2),
+        margin: EdgeInsets.symmetric(vertical: verticalMargin, horizontal: 10),
+        padding: EdgeInsets.all(size.isMobile ? 12 : 20),
         decoration: BoxDecoration(
           color: Colors.white.withValues(alpha: 0.9),
           borderRadius: BorderRadius.circular(30),
@@ -101,8 +103,8 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
           decoration: InputDecoration(
             hintText: "제목을 입력하세요.",
             hintStyle: size.isMobile ? BingTextStyles.editorHintSmall : BingTextStyles.editorHint,
+            contentPadding: EdgeInsets.symmetric(vertical: size.isMobile ? 10 : 20),
             border: InputBorder.none,
-            contentPadding: const EdgeInsets.symmetric(vertical: 20),
           ),
         ),
 
@@ -115,14 +117,45 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
             Expanded(
               child: QuillSimpleToolbar(
                 controller: _controller,
-                config: const QuillSimpleToolbarConfig(
+                config: QuillSimpleToolbarConfig(
                   showFontFamily: false,
                   showFontSize: false,
+                  showSubscript: false,
+                  showSuperscript: false,
+                  showSmallButton: false,
+                  showInlineCode: false,
+                  showDirection: false,
+                  showSearchButton: false,
+
+                  showBoldButton: true,
+                  showItalicButton: true,
+                  showUnderLineButton: true,
+                  showStrikeThrough: false,
+                  showColorButton: true,
+                  showBackgroundColorButton: false,
+
+                  showListNumbers: !size.isMobile,
+                  showListBullets: true,
+                  showListCheck: false,
+
+                  showQuote: !size.isMobile,
+                  showIndent: !size.isMobile,
+                  showCodeBlock: !size.isMobile,
+                  showLink: !size.isMobile,
+
+                  showAlignmentButtons: !size.isMobile,
+
+                  showRedo: !size.isMobile,
+                  showUndo: !size.isMobile,
+
+                  showHeaderStyle: !size.isMobile,
+
+                  multiRowsDisplay: false,
                 ),
               ),
             ),
             const SizedBox(width: 10),
-            _buildUploadButton(),
+            _buildUploadButton(size),
           ],
         ),
         Expanded(
@@ -135,6 +168,7 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
               config: const QuillEditorConfig(
                 placeholder: "이곳에 소중한 기록을 남겨주세요...",
                 expands: true,
+                scrollable: true,
               ),
             ),
           ),
@@ -143,7 +177,7 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
     );
   }
 
-  Widget _buildUploadButton() {
+  Widget _buildUploadButton(Size size) {
     final isLoading = ref.watch(_isLoadingProvider);
     return Padding(
       padding: const EdgeInsets.only(right: 8.0),
@@ -151,7 +185,10 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
         onTap: isLoading ? null : _uploadPost,
         borderRadius: BorderRadius.circular(12),
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(
+              horizontal: size.isMobile ? 12 : 20,
+              vertical: size.isMobile ? 8 : 10
+          ),
           decoration: BoxDecoration(
             color: BingColors.primary,
             borderRadius: BorderRadius.circular(12),
@@ -163,17 +200,17 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
               ),
             ],
           ),
-          child: const Row(
+          child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.send_rounded, color: Colors.white, size: 18),
-              SizedBox(width: 8),
+              const Icon(Icons.send_rounded, color: Colors.white, size: 18),
+              const SizedBox(width: 8),
               Text(
                 "게시하기",
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                  fontSize: size.isMobile ? 13 : 15,
                 ),
               ),
             ],
