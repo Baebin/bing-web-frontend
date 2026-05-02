@@ -1,6 +1,7 @@
 import 'package:bing_web_frontend/core/auth/auth_provider.dart';
 import 'package:bing_web_frontend/core/auth/token_manager.dart';
 import 'package:bing_web_frontend/core/constants/bing_box_decorations.dart';
+import 'package:bing_web_frontend/core/constants/bing_button_styles.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
@@ -153,12 +154,7 @@ class _LoginWidgetState extends ConsumerState<LoginWidget> {
       height: 55,
       child: ElevatedButton(
         onPressed: _handleLogin,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: BingColors.pastelBlueSoft,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          elevation: 0,
-        ),
+        style: BingButtonStyles.pastelRounded,
         child: Text("로그인", style: size.isMobile ? BingTextStyles.buttonLabelSmall : BingTextStyles.buttonLabel),
       ),
     );

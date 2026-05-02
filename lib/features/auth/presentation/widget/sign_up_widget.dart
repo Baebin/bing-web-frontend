@@ -1,4 +1,5 @@
 import 'package:bing_web_frontend/core/constants/bing_box_decorations.dart';
+import 'package:bing_web_frontend/core/constants/bing_button_styles.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
@@ -183,14 +184,7 @@ class _SignUpWidgetState extends ConsumerState<SignUpWidget> {
       height: 55,
       child: ElevatedButton(
         onPressed: _handleSignUp,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: BingColors.pastelBlueSoft,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          elevation: 0,
-        ),
+        style: BingButtonStyles.pastelRounded,
         child: Text("회원가입", style: size.isMobile ? BingTextStyles.buttonLabelSmall : BingTextStyles.buttonLabel),
       ),
     );

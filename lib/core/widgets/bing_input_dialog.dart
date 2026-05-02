@@ -1,3 +1,4 @@
+import 'package:bing_web_frontend/core/constants/bing_button_styles.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
@@ -189,15 +190,7 @@ class _BingInputDialogState extends ConsumerState<BingInputDialog> {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () => _handleCancel(),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.red.withValues(alpha: 0.6),
-                            foregroundColor: Colors.white,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                          ),
+                          style: BingButtonStyles.dangerRounded,
                           child: Text(widget.secondaryText, style: size.isMobile ? BingTextStyles.dialogButtonSmall : BingTextStyles.dialogButton),
                         ),
                       ),
@@ -205,15 +198,7 @@ class _BingInputDialogState extends ConsumerState<BingInputDialog> {
                       Expanded(
                         child: ElevatedButton(
                           onPressed: isLoading ? null : () => _handleConfirm(),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: BingColors.primary,
-                            foregroundColor: Colors.white,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            padding: const EdgeInsets.symmetric(vertical: 15),
-                          ),
+                          style: BingButtonStyles.primaryRounded,
                           child: Text(widget.confirmText, style: size.isMobile ? BingTextStyles.dialogButtonSmall : BingTextStyles.dialogButton),
                         ),
                       ),
