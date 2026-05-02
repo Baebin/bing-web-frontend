@@ -1,3 +1,4 @@
+import 'package:bing_web_frontend/core/auth/auth_provider.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_images.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
@@ -92,7 +93,7 @@ class _CommunityWidgetState extends ConsumerState<CommunityWidget> {
                   Column(
                     children: [
                       _buildHeader(size),
-                      _buildPostListHeader(size),
+                      if (!size.isMobile) _buildPostListHeader(size),
                       _buildPostItems(size),
                     ],
                   ),
@@ -119,6 +120,7 @@ class _CommunityWidgetState extends ConsumerState<CommunityWidget> {
   }
 
   Widget _buildHeader(Size size) {
+    final isBingJoined = ref.watch(isBingJoinedProvider).value ?? false;
     return Padding(
       padding: EdgeInsets.fromLTRB(
         size.isMobile ? 20 : 32,
@@ -134,7 +136,7 @@ class _CommunityWidgetState extends ConsumerState<CommunityWidget> {
             "빙구단 커뮤니티",
             style: size.isMobile ? BingTextStyles.postListMainTitleSmall : BingTextStyles.postListMainTitle,
           ),
-          ElevatedButton.icon(
+          if (isBingJoined) ElevatedButton.icon(
             onPressed: () => context.push(BingRoute.communityPost),
             icon: Icon(Icons.edit, size: size.isMobile ? 16 : 18),
             label: Text(
@@ -169,15 +171,13 @@ class _CommunityWidgetState extends ConsumerState<CommunityWidget> {
       ),
       child: Row(
         children: [
-          SizedBox(width: size.isMobile ? 32 : 42),
+          SizedBox(width: 42),
           Expanded(
             child: Text("제목", style: headerStyle),
           ),
-          if (!size.isMobile) ...[
-            SizedBox(width: 60, child: Text("조회", textAlign: TextAlign.center, style: headerStyle)),
-            SizedBox(width: 60, child: Text("댓글", textAlign: TextAlign.center, style: headerStyle)),
-            SizedBox(width: 100, child: Text("작성일", textAlign: TextAlign.center, style: headerStyle)),
-          ],
+          SizedBox(width: 60, child: Text("조회", textAlign: TextAlign.center, style: headerStyle)),
+          SizedBox(width: 60, child: Text("댓글", textAlign: TextAlign.center, style: headerStyle)),
+          SizedBox(width: 100, child: Text("작성일", textAlign: TextAlign.center, style: headerStyle)),
         ],
       ),
     );
