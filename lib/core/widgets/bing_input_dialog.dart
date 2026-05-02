@@ -115,6 +115,8 @@ class _BingInputDialogState extends ConsumerState<BingInputDialog> {
     final size = MediaQuery.sizeOf(context);
     final contentStyle = size.isMobile ? BingTextStyles.dialogBodySmall : BingTextStyles.dialogBody;
 
+    final isLoading = ref.watch(_isLoadingProvider);
+
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.symmetric(horizontal: 20),
@@ -202,7 +204,7 @@ class _BingInputDialogState extends ConsumerState<BingInputDialog> {
                       const SizedBox(width: 10),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () => _handleConfirm(),
+                          onPressed: isLoading ? null : () => _handleConfirm(),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: BingColors.primary,
                             foregroundColor: Colors.white,
