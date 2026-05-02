@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bing_web_frontend/core/constants/bing_box_decorations.dart';
 import 'package:bing_web_frontend/core/constants/bing_colors.dart';
 import 'package:bing_web_frontend/core/constants/bing_text_styles.dart';
 import 'package:bing_web_frontend/core/utils/extensions/size_extension.dart';
@@ -63,21 +64,7 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
         height: size.height - (verticalMargin * 2),
         margin: EdgeInsets.symmetric(vertical: verticalMargin, horizontal: 10),
         padding: EdgeInsets.all(size.isMobile ? 12 : 20),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.9),
-          borderRadius: BorderRadius.circular(30),
-          border: Border.all(
-            color: BingColors.primary.withValues(alpha: 0.2),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.05),
-              blurRadius: 20,
-              spreadRadius: 5,
-            ),
-          ],
-        ),
+        decoration: BingBoxDecorations.commonBoard,
         child: _buildEditor(size),
       ),
     );
