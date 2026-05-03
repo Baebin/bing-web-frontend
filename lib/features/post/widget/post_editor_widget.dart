@@ -60,9 +60,14 @@ class _PostEditorWidgetState extends ConsumerState<PostEditorWidget> {
 
     return Center(
       child: Container(
-        width: size.isMobile ? size.width * 0.9 : 850,
+        margin: EdgeInsets.symmetric(
+            vertical: size.isMobile ? 20 : 50,
+            horizontal: size.isMobile ? 10 : 20,
+        ),
+        constraints: BoxConstraints(
+          maxWidth: 850,
+        ),
         height: size.height - (verticalMargin * 2),
-        margin: EdgeInsets.symmetric(vertical: verticalMargin, horizontal: 10),
         padding: EdgeInsets.all(size.isMobile ? 12 : 20),
         decoration: BingBoxDecorations.commonBoard,
         child: _buildEditor(size),
