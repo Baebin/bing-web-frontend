@@ -13,8 +13,9 @@ _PostResponse _$PostResponseFromJson(Map<String, dynamic> json) =>
       authorNickname: json['author_nickname'] as String,
       title: json['title'] as String,
       content: json['content'] as String,
-      createdAt: DateTime.parse(json['created_at'] as String),
-      updatedAt: DateTime.parse(json['updated_at'] as String),
+      type: $enumDecode(_$PostTypeEnumMap, json['type']),
+      createdAt: json['created_at'] as String,
+      updatedAt: json['updated_at'] as String,
     );
 
 Map<String, dynamic> _$PostResponseToJson(_PostResponse instance) =>
@@ -24,6 +25,14 @@ Map<String, dynamic> _$PostResponseToJson(_PostResponse instance) =>
       'author_nickname': instance.authorNickname,
       'title': instance.title,
       'content': instance.content,
-      'created_at': instance.createdAt.toIso8601String(),
-      'updated_at': instance.updatedAt.toIso8601String(),
+      'type': _$PostTypeEnumMap[instance.type]!,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
     };
+
+const _$PostTypeEnumMap = {
+  PostType.notice: 'NOTICE',
+  PostType.portfolio: 'PORTFOLIO',
+  PostType.blog: 'BLOG',
+  PostType.community: 'COMMUNITY',
+};

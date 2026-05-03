@@ -134,6 +134,55 @@ class BingTextStyles {
     fontWeight: FontWeight.bold,
   );
 
+  // Post Detail Styles
+  static const postDetailCategory = TextStyle(
+    color: BingColors.primary,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.2,
+  );
+  static const postDetailCategorySmall = TextStyle(
+    color: BingColors.primary,
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+    letterSpacing: 1.2,
+  );
+
+  static const postDetailTitle = TextStyle(
+    color: BingColors.primaryDark,
+    fontSize: 28,
+    fontWeight: FontWeight.bold,
+    height: 1.2,
+    letterSpacing: -0.5,
+  );
+  static const postDetailTitleSmall = TextStyle(
+    color: BingColors.primaryDark,
+    fontSize: 22,
+    fontWeight: FontWeight.bold,
+    height: 1.2,
+    letterSpacing: -0.4,
+  );
+
+  static const postDetailAuthor = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
+  static const postDetailAuthorSmall = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 14,
+    fontWeight: FontWeight.w600,
+  );
+
+  static const postDetailMeta = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 15,
+  );
+  static const postDetailMetaSmall = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 13,
+  );
+  
   // Editor Styles
   static const editorTitle = TextStyle(
     color: BingColors.primaryDark,

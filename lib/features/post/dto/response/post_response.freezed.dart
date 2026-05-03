@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PostResponse {
 
- int get idx; int get authorIdx; String get authorNickname; String get title; String get content; DateTime get createdAt; DateTime get updatedAt;
+ int get idx; int get authorIdx; String get authorNickname; String get title; String get content; PostType get type; String get createdAt; String get updatedAt;
 /// Create a copy of PostResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $PostResponseCopyWith<PostResponse> get copyWith => _$PostResponseCopyWithImpl<P
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostResponse&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.authorIdx, authorIdx) || other.authorIdx == authorIdx)&&(identical(other.authorNickname, authorNickname) || other.authorNickname == authorNickname)&&(identical(other.title, title) || other.title == title)&&(identical(other.content, content) || other.content == content)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostResponse&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.authorIdx, authorIdx) || other.authorIdx == authorIdx)&&(identical(other.authorNickname, authorNickname) || other.authorNickname == authorNickname)&&(identical(other.title, title) || other.title == title)&&(identical(other.content, content) || other.content == content)&&(identical(other.type, type) || other.type == type)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,idx,authorIdx,authorNickname,title,content,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,idx,authorIdx,authorNickname,title,content,type,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'PostResponse(idx: $idx, authorIdx: $authorIdx, authorNickname: $authorNickname, title: $title, content: $content, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'PostResponse(idx: $idx, authorIdx: $authorIdx, authorNickname: $authorNickname, title: $title, content: $content, type: $type, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $PostResponseCopyWith<$Res>  {
   factory $PostResponseCopyWith(PostResponse value, $Res Function(PostResponse) _then) = _$PostResponseCopyWithImpl;
 @useResult
 $Res call({
- int idx, int authorIdx, String authorNickname, String title, String content, DateTime createdAt, DateTime updatedAt
+ int idx, int authorIdx, String authorNickname, String title, String content, PostType type, String createdAt, String updatedAt
 });
 
 
@@ -65,16 +65,17 @@ class _$PostResponseCopyWithImpl<$Res>
 
 /// Create a copy of PostResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? idx = null,Object? authorIdx = null,Object? authorNickname = null,Object? title = null,Object? content = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? idx = null,Object? authorIdx = null,Object? authorNickname = null,Object? title = null,Object? content = null,Object? type = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_self.copyWith(
 idx: null == idx ? _self.idx : idx // ignore: cast_nullable_to_non_nullable
 as int,authorIdx: null == authorIdx ? _self.authorIdx : authorIdx // ignore: cast_nullable_to_non_nullable
 as int,authorNickname: null == authorNickname ? _self.authorNickname : authorNickname // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as PostType,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
@@ -156,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int idx,  int authorIdx,  String authorNickname,  String title,  String content,  DateTime createdAt,  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int idx,  int authorIdx,  String authorNickname,  String title,  String content,  PostType type,  String createdAt,  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostResponse() when $default != null:
-return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.content,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.content,_that.type,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -177,10 +178,10 @@ return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int idx,  int authorIdx,  String authorNickname,  String title,  String content,  DateTime createdAt,  DateTime updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int idx,  int authorIdx,  String authorNickname,  String title,  String content,  PostType type,  String createdAt,  String updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _PostResponse():
-return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.content,_that.createdAt,_that.updatedAt);}
+return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.content,_that.type,_that.createdAt,_that.updatedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -194,10 +195,10 @@ return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int idx,  int authorIdx,  String authorNickname,  String title,  String content,  DateTime createdAt,  DateTime updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int idx,  int authorIdx,  String authorNickname,  String title,  String content,  PostType type,  String createdAt,  String updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _PostResponse() when $default != null:
-return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.content,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.content,_that.type,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -209,7 +210,7 @@ return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _PostResponse implements PostResponse {
-  const _PostResponse({required this.idx, required this.authorIdx, required this.authorNickname, required this.title, required this.content, required this.createdAt, required this.updatedAt});
+  const _PostResponse({required this.idx, required this.authorIdx, required this.authorNickname, required this.title, required this.content, required this.type, required this.createdAt, required this.updatedAt});
   factory _PostResponse.fromJson(Map<String, dynamic> json) => _$PostResponseFromJson(json);
 
 @override final  int idx;
@@ -217,8 +218,9 @@ class _PostResponse implements PostResponse {
 @override final  String authorNickname;
 @override final  String title;
 @override final  String content;
-@override final  DateTime createdAt;
-@override final  DateTime updatedAt;
+@override final  PostType type;
+@override final  String createdAt;
+@override final  String updatedAt;
 
 /// Create a copy of PostResponse
 /// with the given fields replaced by the non-null parameter values.
@@ -233,16 +235,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostResponse&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.authorIdx, authorIdx) || other.authorIdx == authorIdx)&&(identical(other.authorNickname, authorNickname) || other.authorNickname == authorNickname)&&(identical(other.title, title) || other.title == title)&&(identical(other.content, content) || other.content == content)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostResponse&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.authorIdx, authorIdx) || other.authorIdx == authorIdx)&&(identical(other.authorNickname, authorNickname) || other.authorNickname == authorNickname)&&(identical(other.title, title) || other.title == title)&&(identical(other.content, content) || other.content == content)&&(identical(other.type, type) || other.type == type)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,idx,authorIdx,authorNickname,title,content,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,idx,authorIdx,authorNickname,title,content,type,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'PostResponse(idx: $idx, authorIdx: $authorIdx, authorNickname: $authorNickname, title: $title, content: $content, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'PostResponse(idx: $idx, authorIdx: $authorIdx, authorNickname: $authorNickname, title: $title, content: $content, type: $type, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -253,7 +255,7 @@ abstract mixin class _$PostResponseCopyWith<$Res> implements $PostResponseCopyWi
   factory _$PostResponseCopyWith(_PostResponse value, $Res Function(_PostResponse) _then) = __$PostResponseCopyWithImpl;
 @override @useResult
 $Res call({
- int idx, int authorIdx, String authorNickname, String title, String content, DateTime createdAt, DateTime updatedAt
+ int idx, int authorIdx, String authorNickname, String title, String content, PostType type, String createdAt, String updatedAt
 });
 
 
@@ -270,16 +272,17 @@ class __$PostResponseCopyWithImpl<$Res>
 
 /// Create a copy of PostResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? idx = null,Object? authorIdx = null,Object? authorNickname = null,Object? title = null,Object? content = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? idx = null,Object? authorIdx = null,Object? authorNickname = null,Object? title = null,Object? content = null,Object? type = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_PostResponse(
 idx: null == idx ? _self.idx : idx // ignore: cast_nullable_to_non_nullable
 as int,authorIdx: null == authorIdx ? _self.authorIdx : authorIdx // ignore: cast_nullable_to_non_nullable
 as int,authorNickname: null == authorNickname ? _self.authorNickname : authorNickname // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,content: null == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
-as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
-as DateTime,
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as PostType,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
+as String,
   ));
 }
 
