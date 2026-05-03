@@ -17,7 +17,6 @@ import 'package:bing_web_frontend/features/post/service/post_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:go_router/go_router.dart';
 
 final _postPagingProvider = StateProvider.autoDispose<PostWithPagingResponse?>((ref) => null);
 final _currentPageProvider = StateProvider.autoDispose<int>((ref) => 0);
@@ -67,8 +66,8 @@ class _CommunityWidgetState extends ConsumerState<CommunityWidget> {
           child: Center(
             child: Container(
               margin: EdgeInsets.symmetric(
-                  vertical: size.isMobile ? 20 : 50,
-                  horizontal: size.isMobile ? 10 : 20
+                vertical: size.isMobile ? 20 : 50,
+                horizontal: size.isMobile ? 10 : 20,
               ),
               constraints: BoxConstraints(
                 maxWidth: 1000,
@@ -215,7 +214,7 @@ class _CommunityWidgetState extends ConsumerState<CommunityWidget> {
   Widget _buildPostItem(Size size, PostListResponse post) {
     final accountService = ref.read(accountServiceProvider);
     return InkWell(
-      onTap: null,
+      onTap: () => context.goSafe(BingRoute.communityPostDetail, queryParameters: {"idx": post.idx}),
       borderRadius: BorderRadius.circular(10),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
