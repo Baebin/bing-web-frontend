@@ -5,7 +5,7 @@ import 'package:bing_web_frontend/core/dto/response/token_response.dart';
 import 'package:bing_web_frontend/core/router/bing_route.dart';
 import 'package:bing_web_frontend/core/router/bing_router.dart';
 import 'package:bing_web_frontend/core/utils/extensions/build_context_extension.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
