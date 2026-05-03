@@ -5,7 +5,6 @@ import 'package:bing_web_frontend/features/post/common/post_type.dart';
 import 'package:bing_web_frontend/features/post/dto/request/post_request.dart';
 import 'package:bing_web_frontend/features/post/service/post_service.dart';
 import 'package:bing_web_frontend/features/post/widget/post_editor_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
