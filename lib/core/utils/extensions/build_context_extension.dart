@@ -13,11 +13,14 @@ extension BuildContextExtension on BuildContext {
 
   String _buildLocation(String location, Map<String, dynamic>? queryParameters) {
     if (queryParameters == null || queryParameters.isEmpty) return location;
-    return Uri(path: location, queryParameters: queryParameters).toString();
+    final stringParams = queryParameters.map(
+          (key, value) => MapEntry(key, value?.toString() ?? ""),
+    );
+    return Uri(path: location, queryParameters: stringParams).toString();
   }
 
   // 현재 페이지 파괴 (기존 데이터 소멸)
-  void goSafe(String location, { Map<String, dynamic>? queryParameters }) {
+  void goSafe(String location, {Map<String, dynamic>? queryParameters}) {
     final target = _buildLocation(location, queryParameters);
     if (currentLocation != target) go(target);
   }
