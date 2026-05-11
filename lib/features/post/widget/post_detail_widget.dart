@@ -12,6 +12,7 @@ import 'package:bing_web_frontend/core/widgets/line_divider.dart';
 import 'package:bing_web_frontend/features/account/service/account_service.dart';
 import 'package:bing_web_frontend/features/post/dto/response/post_response.dart';
 import 'package:bing_web_frontend/features/post/service/post_service.dart';
+import 'package:bing_web_frontend/features/post/widget/comment_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -83,6 +84,13 @@ class _PostDetailWidgetState extends ConsumerState<PostDetailWidget> {
                     const LineDivider(isVertical: false, width: double.infinity, height: 0, color: BingColors.primaryLight),
                     SizedBox(height: size.isMobile ? 20 : 30),
                     _buildQuillViewer(),
+
+                    const SizedBox(height: 50),
+                    const LineDivider(isVertical: false, width: double.infinity, height: 0, color: BingColors.primaryLight),
+                    const SizedBox(height: 20),
+                    Text("댓글", style: size.isMobile ? BingTextStyles.postDetailTitleSmall : BingTextStyles.postDetailTitle),
+                    const SizedBox(height: 20),
+                    CommentDetailWidget(postIdx: widget.idx),
                   ],
                 ),
               ),

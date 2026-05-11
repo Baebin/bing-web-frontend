@@ -266,4 +266,77 @@ class BingTextStyles {
     fontSize: 14,
     fontWeight: FontWeight.w600,
   );
+
+  // Comment Styles
+  static const commentAuthor = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 14,
+    fontWeight: FontWeight.bold,
+  );
+  static const commentAuthorSmall = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 12,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const commentBody = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 14,
+    height: 1.4,
+  );
+  static const commentBodySmall = TextStyle(
+    color: BingColors.textPrimary,
+    fontSize: 12,
+    height: 1.3,
+  );
+
+  static const commentMeta = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 13,
+  );
+  static const commentMetaSmall = TextStyle(
+    color: BingColors.textSecondary,
+    fontSize: 11,
+  );
+
+  static const commentButtonLabel = TextStyle(
+    color: Colors.black87,
+    fontSize: 11,
+    height: 1.0,
+  );
+
+  static const commentButtonLabelSmall = TextStyle(
+    color: Colors.black87,
+    fontSize: 10,
+    height: 1.0,
+  );
+
+  static const commentInputHint = TextStyle(
+    color: Colors.grey,
+    fontSize: 13,
+  );
+  static const commentInputHintSmall = TextStyle(
+    color: Colors.grey,
+    fontSize: 12,
+  );
+
+  static const commentInputTool = TextStyle(
+    color: Colors.grey,
+    fontSize: 12,
+  );
+  static const commentInputToolSmall = TextStyle(
+    color: Colors.grey,
+    fontSize: 11,
+  );
+
+  static const commentSubmit = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+    fontSize: 14,
+  );
+  static const commentSubmitSmall = TextStyle(
+    color: Colors.black,
+    fontWeight: FontWeight.bold,
+    fontSize: 12,
+  );
 }
