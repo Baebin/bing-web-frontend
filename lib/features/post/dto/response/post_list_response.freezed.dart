@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PostListResponse {
 
- int get idx; int get authorIdx; String get authorNickname; String get title; int get viewCount; int get commentCount; String get createdAt; String get updatedAt;
+ int get idx; int get authorIdx; String get authorNickname; String get title; int get viewCount; int get likeCount; int get commentCount; String get createdAt; String get updatedAt;
 /// Create a copy of PostListResponse
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $PostListResponseCopyWith<PostListResponse> get copyWith => _$PostListResponseCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostListResponse&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.authorIdx, authorIdx) || other.authorIdx == authorIdx)&&(identical(other.authorNickname, authorNickname) || other.authorNickname == authorNickname)&&(identical(other.title, title) || other.title == title)&&(identical(other.viewCount, viewCount) || other.viewCount == viewCount)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PostListResponse&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.authorIdx, authorIdx) || other.authorIdx == authorIdx)&&(identical(other.authorNickname, authorNickname) || other.authorNickname == authorNickname)&&(identical(other.title, title) || other.title == title)&&(identical(other.viewCount, viewCount) || other.viewCount == viewCount)&&(identical(other.likeCount, likeCount) || other.likeCount == likeCount)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,idx,authorIdx,authorNickname,title,viewCount,commentCount,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,idx,authorIdx,authorNickname,title,viewCount,likeCount,commentCount,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'PostListResponse(idx: $idx, authorIdx: $authorIdx, authorNickname: $authorNickname, title: $title, viewCount: $viewCount, commentCount: $commentCount, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'PostListResponse(idx: $idx, authorIdx: $authorIdx, authorNickname: $authorNickname, title: $title, viewCount: $viewCount, likeCount: $likeCount, commentCount: $commentCount, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $PostListResponseCopyWith<$Res>  {
   factory $PostListResponseCopyWith(PostListResponse value, $Res Function(PostListResponse) _then) = _$PostListResponseCopyWithImpl;
 @useResult
 $Res call({
- int idx, int authorIdx, String authorNickname, String title, int viewCount, int commentCount, String createdAt, String updatedAt
+ int idx, int authorIdx, String authorNickname, String title, int viewCount, int likeCount, int commentCount, String createdAt, String updatedAt
 });
 
 
@@ -65,13 +65,14 @@ class _$PostListResponseCopyWithImpl<$Res>
 
 /// Create a copy of PostListResponse
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? idx = null,Object? authorIdx = null,Object? authorNickname = null,Object? title = null,Object? viewCount = null,Object? commentCount = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? idx = null,Object? authorIdx = null,Object? authorNickname = null,Object? title = null,Object? viewCount = null,Object? likeCount = null,Object? commentCount = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_self.copyWith(
 idx: null == idx ? _self.idx : idx // ignore: cast_nullable_to_non_nullable
 as int,authorIdx: null == authorIdx ? _self.authorIdx : authorIdx // ignore: cast_nullable_to_non_nullable
 as int,authorNickname: null == authorNickname ? _self.authorNickname : authorNickname // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,viewCount: null == viewCount ? _self.viewCount : viewCount // ignore: cast_nullable_to_non_nullable
+as int,likeCount: null == likeCount ? _self.likeCount : likeCount // ignore: cast_nullable_to_non_nullable
 as int,commentCount: null == commentCount ? _self.commentCount : commentCount // ignore: cast_nullable_to_non_nullable
 as int,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
@@ -157,10 +158,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int idx,  int authorIdx,  String authorNickname,  String title,  int viewCount,  int commentCount,  String createdAt,  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int idx,  int authorIdx,  String authorNickname,  String title,  int viewCount,  int likeCount,  int commentCount,  String createdAt,  String updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PostListResponse() when $default != null:
-return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.viewCount,_that.commentCount,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.viewCount,_that.likeCount,_that.commentCount,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -178,10 +179,10 @@ return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int idx,  int authorIdx,  String authorNickname,  String title,  int viewCount,  int commentCount,  String createdAt,  String updatedAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int idx,  int authorIdx,  String authorNickname,  String title,  int viewCount,  int likeCount,  int commentCount,  String createdAt,  String updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _PostListResponse():
-return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.viewCount,_that.commentCount,_that.createdAt,_that.updatedAt);}
+return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.viewCount,_that.likeCount,_that.commentCount,_that.createdAt,_that.updatedAt);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -195,10 +196,10 @@ return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int idx,  int authorIdx,  String authorNickname,  String title,  int viewCount,  int commentCount,  String createdAt,  String updatedAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int idx,  int authorIdx,  String authorNickname,  String title,  int viewCount,  int likeCount,  int commentCount,  String createdAt,  String updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _PostListResponse() when $default != null:
-return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.viewCount,_that.commentCount,_that.createdAt,_that.updatedAt);case _:
+return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that.viewCount,_that.likeCount,_that.commentCount,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -210,7 +211,7 @@ return $default(_that.idx,_that.authorIdx,_that.authorNickname,_that.title,_that
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _PostListResponse implements PostListResponse {
-  const _PostListResponse({required this.idx, required this.authorIdx, required this.authorNickname, required this.title, required this.viewCount, required this.commentCount, required this.createdAt, required this.updatedAt});
+  const _PostListResponse({required this.idx, required this.authorIdx, required this.authorNickname, required this.title, required this.viewCount, required this.likeCount, required this.commentCount, required this.createdAt, required this.updatedAt});
   factory _PostListResponse.fromJson(Map<String, dynamic> json) => _$PostListResponseFromJson(json);
 
 @override final  int idx;
@@ -218,6 +219,7 @@ class _PostListResponse implements PostListResponse {
 @override final  String authorNickname;
 @override final  String title;
 @override final  int viewCount;
+@override final  int likeCount;
 @override final  int commentCount;
 @override final  String createdAt;
 @override final  String updatedAt;
@@ -235,16 +237,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostListResponse&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.authorIdx, authorIdx) || other.authorIdx == authorIdx)&&(identical(other.authorNickname, authorNickname) || other.authorNickname == authorNickname)&&(identical(other.title, title) || other.title == title)&&(identical(other.viewCount, viewCount) || other.viewCount == viewCount)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PostListResponse&&(identical(other.idx, idx) || other.idx == idx)&&(identical(other.authorIdx, authorIdx) || other.authorIdx == authorIdx)&&(identical(other.authorNickname, authorNickname) || other.authorNickname == authorNickname)&&(identical(other.title, title) || other.title == title)&&(identical(other.viewCount, viewCount) || other.viewCount == viewCount)&&(identical(other.likeCount, likeCount) || other.likeCount == likeCount)&&(identical(other.commentCount, commentCount) || other.commentCount == commentCount)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,idx,authorIdx,authorNickname,title,viewCount,commentCount,createdAt,updatedAt);
+int get hashCode => Object.hash(runtimeType,idx,authorIdx,authorNickname,title,viewCount,likeCount,commentCount,createdAt,updatedAt);
 
 @override
 String toString() {
-  return 'PostListResponse(idx: $idx, authorIdx: $authorIdx, authorNickname: $authorNickname, title: $title, viewCount: $viewCount, commentCount: $commentCount, createdAt: $createdAt, updatedAt: $updatedAt)';
+  return 'PostListResponse(idx: $idx, authorIdx: $authorIdx, authorNickname: $authorNickname, title: $title, viewCount: $viewCount, likeCount: $likeCount, commentCount: $commentCount, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -255,7 +257,7 @@ abstract mixin class _$PostListResponseCopyWith<$Res> implements $PostListRespon
   factory _$PostListResponseCopyWith(_PostListResponse value, $Res Function(_PostListResponse) _then) = __$PostListResponseCopyWithImpl;
 @override @useResult
 $Res call({
- int idx, int authorIdx, String authorNickname, String title, int viewCount, int commentCount, String createdAt, String updatedAt
+ int idx, int authorIdx, String authorNickname, String title, int viewCount, int likeCount, int commentCount, String createdAt, String updatedAt
 });
 
 
@@ -272,13 +274,14 @@ class __$PostListResponseCopyWithImpl<$Res>
 
 /// Create a copy of PostListResponse
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? idx = null,Object? authorIdx = null,Object? authorNickname = null,Object? title = null,Object? viewCount = null,Object? commentCount = null,Object? createdAt = null,Object? updatedAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? idx = null,Object? authorIdx = null,Object? authorNickname = null,Object? title = null,Object? viewCount = null,Object? likeCount = null,Object? commentCount = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_PostListResponse(
 idx: null == idx ? _self.idx : idx // ignore: cast_nullable_to_non_nullable
 as int,authorIdx: null == authorIdx ? _self.authorIdx : authorIdx // ignore: cast_nullable_to_non_nullable
 as int,authorNickname: null == authorNickname ? _self.authorNickname : authorNickname // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,viewCount: null == viewCount ? _self.viewCount : viewCount // ignore: cast_nullable_to_non_nullable
+as int,likeCount: null == likeCount ? _self.likeCount : likeCount // ignore: cast_nullable_to_non_nullable
 as int,commentCount: null == commentCount ? _self.commentCount : commentCount // ignore: cast_nullable_to_non_nullable
 as int,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as String,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable

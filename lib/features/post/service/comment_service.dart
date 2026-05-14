@@ -19,12 +19,13 @@ class CommentService extends BingApiService {
     );
   }
 
-  Future<dynamic> getList(int postIdx, {int? lastParentIdx}) async {
+  Future<dynamic> getList(int postIdx, {int? lastParentIdx, bool until = false}) async {
     return safeApiCall(
           () => dio.get(
           "$_p/$postIdx/comments",
           queryParameters: {
             "last-parent-idx": lastParentIdx,
+            "until": until,
           }
       ),
       onSuccess: (data) => CommentWithPagingResponse.fromJson(data),

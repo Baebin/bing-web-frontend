@@ -12,6 +12,7 @@ sealed class PostListResponse with _$PostListResponse {
     required String authorNickname,
     required String title,
     required int viewCount,
+    required int likeCount,
     required int commentCount,
     required String createdAt,
     required String updatedAt,

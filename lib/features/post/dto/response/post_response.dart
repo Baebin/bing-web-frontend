@@ -14,6 +14,10 @@ sealed class PostResponse with _$PostResponse {
     required String title,
     required String content,
     required PostType type,
+    required int viewCount,
+    required int likeCount,
+    required int commentCount,
+    required bool isLiked,
     required String createdAt,
     required String updatedAt,
   }) = _PostResponse;

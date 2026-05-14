@@ -14,6 +14,10 @@ _PostResponse _$PostResponseFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String,
       content: json['content'] as String,
       type: $enumDecode(_$PostTypeEnumMap, json['type']),
+      viewCount: (json['view_count'] as num).toInt(),
+      likeCount: (json['like_count'] as num).toInt(),
+      commentCount: (json['comment_count'] as num).toInt(),
+      isLiked: json['is_liked'] as bool,
       createdAt: json['created_at'] as String,
       updatedAt: json['updated_at'] as String,
     );
@@ -26,6 +30,10 @@ Map<String, dynamic> _$PostResponseToJson(_PostResponse instance) =>
       'title': instance.title,
       'content': instance.content,
       'type': _$PostTypeEnumMap[instance.type]!,
+      'view_count': instance.viewCount,
+      'like_count': instance.likeCount,
+      'comment_count': instance.commentCount,
+      'is_liked': instance.isLiked,
       'created_at': instance.createdAt,
       'updated_at': instance.updatedAt,
     };

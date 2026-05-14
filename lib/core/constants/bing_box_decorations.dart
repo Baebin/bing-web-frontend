@@ -17,4 +17,8 @@ class BingBoxDecorations {
       ),
     ],
   );
+
+  static final BoxDecoration commonMobileBoard = BoxDecoration(
+    color: Colors.white.withValues(alpha: 0.92),
+  );
 }

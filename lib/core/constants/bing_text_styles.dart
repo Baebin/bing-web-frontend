@@ -267,27 +267,39 @@ class BingTextStyles {
     fontWeight: FontWeight.w600,
   );
 
+  static const postListRelatedHeader = TextStyle(
+    color: Colors.black,
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+  );
+
+  static const postListRelatedHeaderSmall = TextStyle(
+    color: Colors.black,
+    fontSize: 12,
+    fontWeight: FontWeight.normal,
+  );
+
   // Comment Styles
   static const commentAuthor = TextStyle(
     color: BingColors.textPrimary,
-    fontSize: 14,
+    fontSize: 15,
     fontWeight: FontWeight.bold,
   );
   static const commentAuthorSmall = TextStyle(
     color: BingColors.textPrimary,
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: FontWeight.bold,
   );
 
   static const commentBody = TextStyle(
     color: BingColors.textPrimary,
-    fontSize: 14,
-    height: 1.4,
+    fontSize: 15,
+    height: 1.6,
   );
   static const commentBodySmall = TextStyle(
     color: BingColors.textPrimary,
-    fontSize: 12,
-    height: 1.3,
+    fontSize: 14,
+    height: 1.5,
   );
 
   static const commentMeta = TextStyle(
@@ -301,14 +313,15 @@ class BingTextStyles {
 
   static const commentButtonLabel = TextStyle(
     color: Colors.black87,
-    fontSize: 11,
-    height: 1.0,
+    fontSize: 13,
+    height: 1.2,
+    fontWeight: FontWeight.w500,
   );
-
   static const commentButtonLabelSmall = TextStyle(
     color: Colors.black87,
-    fontSize: 10,
-    height: 1.0,
+    fontSize: 12,
+    height: 1.2,
+    fontWeight: FontWeight.w500,
   );
 
   static const commentInputHint = TextStyle(

@@ -13,6 +13,23 @@ class CommentList extends _$CommentList {
     return (result is CommentWithPagingResponse) ? result : null;
   }
 
+  Future<void> refresh() async {
+    if (state.isLoading) return;
+
+    final currentData = state.value;
+    final service = ref.read(commentServiceProvider);
+
+    final result = await service.getList(
+      postIdx,
+      lastParentIdx: currentData?.lastParentIdx,
+      until: true,
+    );
+
+    if (result is CommentWithPagingResponse) {
+      state = AsyncValue.data(result);
+    }
+  }
+
   Future<void> fetchNextPage() async {
     if (state.isLoading || state.value?.isLast == true) return;
 
@@ -20,8 +37,8 @@ class CommentList extends _$CommentList {
     final service = ref.read(commentServiceProvider);
 
     final result = await service.getList(
-        postIdx,
-        lastParentIdx: currentData?.lastParentIdx
+      postIdx,
+      lastParentIdx: currentData?.lastParentIdx,
     );
 
     if (result is CommentWithPagingResponse) {
